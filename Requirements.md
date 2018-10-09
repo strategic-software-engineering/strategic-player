@@ -35,6 +35,7 @@ MIT License
    * All of the above rules for valid sequences apply.
    * Coins that were not revealed cannot be modified. <br />
 
+
 **Development Tools** <br />
 1. Ant for building
 1. JUnit 4
