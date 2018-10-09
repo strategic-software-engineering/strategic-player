@@ -36,6 +36,7 @@ MIT License
 8. When I call getNewCoinStates, I expect a valid (format and rules) CharSequence to be returned with any changes to the revealed coins that the player has made.
 9. When I call getNewCoinStates, I expect the hidden coins (represented by "-") to remain unchanged.
 
+
 **Development Tools** <br />
 * Ant for building
 * JUnit 4
