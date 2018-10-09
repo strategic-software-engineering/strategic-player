@@ -15,25 +15,26 @@ https://github.com/strategic-software-engineering/strategic-player
 MIT License
 
 **User Stories** <br />
-1. As a client, I want the StrategicPlayer class to follow the specified interface so that I can use it as planned.
-1. As a user, I want the StrategicPlayer class to adopt an optimal strategy for a 4 coin 2 reveal game so that the class can finish the game in the smallest number of spins.
-1. As a user, I want the StrategicPlayer class to use any other strategy to play the game for any game that is not a 4 coin 2 reveal game, so that any type of game can be played with this class.
-1. As a user, I want the StrategicPlayer class to use a CharSequence of a specific format to represent the wheel so that I can interact with the player and the game in a predictable way.
-  * The CharSequence length will be the same as the number of coins in the slot, and each coin is represented by a character.
-  * A revealed coin will be shown with either an H or a T, correlating with the coin being Heads or Tails, respectively.
-  * A hidden coin will be represented with a "-".
-  * A coin that the player is requesting to be revealed will be represented with a "?"
-1. As a user, I want the beginGame method to initialize a game with the parameters I specify so that the game is exactly what I want it to be.
-1. As a user, I want the getSlotsToReveal method to return a CharSequence that follows the rules so that the game is being played fairly.
-  * The number of coins to reveal cannot exceed revealsPerSpin (and will not likely be fewer -- why would it ever be fewer?).
-  * The number of characters in the CharSequence shall not exceed the number of coins in the wheel for the current game.
-  * The CharSequence return shall not contain any characters other than "-" to represent a hidden coin and a "?" to represent a coin to reveal.
-1. As a user, I want the getNewCoinStates method to accept a valid CharSequence as an argument that represents the current state of the wheel so that the player can play the game.
-  * The number of characters in the CharSequence shall not exceed the number of coins in the wheel for the current game.
-  * The coins that were selected to be revealed by getSlotsToReveal shall be revealed and represented by either an "H" or a "T". Hidden coins will be represented with a "-".
-1. As a user, I want the getNewCoinStates method to return a valid CharSequence with the player's changes to the coins in the wheel so that the player can play the game.
-  * All of the above rules for valid sequences apply.
-  * Coins that were not revealed cannot be modified.
+1. As a client, I want the StrategicPlayer class to follow the specified interface so that I can use it as planned. <br />
+2. As a user, I want the StrategicPlayer class to adopt an optimal strategy for a 4 coin 2 reveal game so that the class can finish the game in the smallest number of spins. <br />
+3. As a user, I want the StrategicPlayer class to use any other strategy to play the game for any game that is not a 4 coin 2 reveal game, so that any type of game can be played with this class. <br />
+4. As a user, I want the StrategicPlayer class to use a CharSequence of a specific format to represent the wheel so that I can interact with the player and the game in a predictable way.
+   * The CharSequence length will be the same as the number of coins in the slot, and each coin is represented by a character.
+   * A revealed coin will be shown with either an H or a T, correlating with the coin being Heads or Tails, respectively.
+   * A hidden coin will be represented with a "-".
+   * A coin that the player is requesting to be revealed will be represented with a "?" <br />
+5. As a user, I want the beginGame method to initialize a game with the parameters I specify so that the game is exactly what I want it to be. <br />
+6. As a user, I want the getSlotsToReveal method to return a CharSequence that follows the rules so that the game is being played fairly.
+   * The number of coins to reveal cannot exceed revealsPerSpin (and will not likely be fewer -- why would it ever be fewer?).
+   * The number of characters in the CharSequence shall not exceed the number of coins in the wheel for the current game.
+   * The CharSequence return shall not contain any characters other than "-" to represent a hidden coin and a "?" to represent a coin to reveal. <br />
+7. As a user, I want the getNewCoinStates method to accept a valid CharSequence as an argument that represents the current state of the wheel so that the player can play the game.
+   * The number of characters in the CharSequence shall not exceed the number of coins in the wheel for the current game.
+   * The coins that were selected to be revealed by getSlotsToReveal shall be revealed and represented by either an "H" or a "T". Hidden coins will be represented with a "-". <br />
+8. As a user, I want the getNewCoinStates method to return a valid CharSequence with the player's changes to the coins in the wheel so that the player can play the game.
+   * All of the above rules for valid sequences apply.
+   * Coins that were not revealed cannot be modified. <br />
+
 
 **Development Tools** <br />
 1. Ant for building
