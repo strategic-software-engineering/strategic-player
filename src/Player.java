@@ -10,42 +10,27 @@ public class Player implements StrategicPlayer {
     }
 
     public CharSequence getSlotsToReveal(){
-        CharSequence a = new CharSequence(){
-            @Override
-            public int length() {
-                return coinsPerWheel;
+        int count = revealsPerSpin;
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i=0; i<coinsPerWheel; i++){
+            if (count>0) {
+                stringBuilder.append('?');
+                count--;
             }
-
-            @Override
-            public char charAt(int index) {
-                return 0;
-            }
-
-            @Override
-            public CharSequence subSequence(int start, int end) {
-                return null;
-            }
-        };
-    return a.toString();
+            else
+                stringBuilder.append('-');
+        }
+    return stringBuilder.toString();
     }
 
     public CharSequence getNewCoinStates(CharSequence revealedPattern){
-        CharSequence b = new CharSequence() {
-            @Override
-            public int length() {
-                return coinsPerWheel;
-            }
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i=0; i<coinsPerWheel; i++){
+            if (revealedPattern.charAt(i) == '?' )
+                stringBuilder.replace(0,1,"H");
+        }
 
-            @Override
-            public char charAt(int index) {
-                return 0;
-            }
-
-            @Override
-            public CharSequence subSequence(int start, int end) {
-                return null;
-            }
-        };
-    return b.toString();
+        return stringBuilder.toString();
     }
+
 }
