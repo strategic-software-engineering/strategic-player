@@ -27,7 +27,7 @@ public class Player implements StrategicPlayer {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i=0; i<coinsPerWheel; i++){
             if (revealedPattern.charAt(i) == '?' )
-                stringBuilder.replace(0,1,"H");
+                stringBuilder.replace(i,(i+1),"H");
         }
 
         return stringBuilder.toString();
