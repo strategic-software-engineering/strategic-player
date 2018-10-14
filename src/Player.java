@@ -25,8 +25,9 @@ public class Player implements StrategicPlayer {
 
     public CharSequence getNewCoinStates(CharSequence revealedPattern){
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(revealedPattern);
         for (int i=0; i<coinsPerWheel; i++){
-            if (revealedPattern.charAt(i) == '?' )
+            if (stringBuilder.charAt(i) == '?' )
                 stringBuilder.replace(i,(i+1),"H");
         }
 
