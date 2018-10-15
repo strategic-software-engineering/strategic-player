@@ -15,10 +15,9 @@ https://github.com/strategic-software-engineering/strategic-player
 MIT License
 
 **User Stories** <br />
-1. As a client, I want the StrategicPlayer class to follow the specified interface so that I can use it as planned. <br />
-  
-  Acceptance Criteria:
-  I can call each method in the interface with their specified arguments.
+1. As a client, I want the StrategicPlayer class to follow the specified interface so that I can use it as planned. <br />  
+  *Acceptance Criteria:
+  *I can call each method in the interface with their specified arguments.
   
 2. As a client, I want the StrategicPlayer class to adopt an optimal strategy for a 4 coin 2 reveal game so that the game can be finished in the smallest number of spins.
 
