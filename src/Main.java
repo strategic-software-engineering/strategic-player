@@ -8,6 +8,6 @@ public class Main {
         p.beginGame(coinsPerWheel,revealsPerSpin,maxNumSpins);
         System.out.println(p.getSlotsToReveal());
         System.out.println(p.getNewCoinStates(p.getSlotsToReveal()));
-        System.out.println(p.getNewCoinStates("?-?-?-?-?-"));
+        System.out.println(p.getNewCoinStates("H-T-T-H-H-"));
     }
 }
