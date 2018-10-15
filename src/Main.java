@@ -15,5 +15,5 @@ public class Main {
         System.out.println(p.getSlotsToReveal());
         System.out.println(p.getNewCoinStates(p.getSlotsToReveal()));
         System.out.println(p.getNewCoinStates("T-H-H-T-T-"));
-    }
+   }
 }
