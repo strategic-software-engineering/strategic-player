@@ -56,7 +56,7 @@ public class Player implements StrategicPlayer {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(revealedPattern);
         for (int i=0; i<coinsPerWheel; i++){
-            if (stringBuilder.charAt(i) == '?' )
+            if (stringBuilder.charAt(i) == 'T' )
                 stringBuilder.replace(i,(i+1),"H");
         }
     return stringBuilder.toString();
