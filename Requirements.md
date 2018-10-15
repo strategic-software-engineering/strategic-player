@@ -15,13 +15,12 @@ https://github.com/strategic-software-engineering/strategic-player
 MIT License
 
 **User Stories** <br />
-1. As a client, I want the StrategicPlayer class to follow the specified interface so that I can use it as planned. <br />  
+1. As a client, I want the StrategicPlayer class to follow the specified interface so that I can use it as planned.  
   Acceptance Criteria:<br />
   I can call each method in the interface with their specified arguments.
   
-2. As a client, I want the StrategicPlayer class to adopt an optimal strategy for a 4 coin 2 reveal game so that the game can be finished in the smallest number of spins.
-
-  Acceptance Criteria:
+2. As a client, I want the StrategicPlayer class to adopt an optimal strategy for a 4 coin 2 reveal game so that the game can be finished in the smallest number of spins.<br />
+  Acceptance Criteria:<br />
   When I play a 4 coin 2 reveal game, it will be solved in the fewest number of spins possible.
   
 3. As a client, I want the StrategicPlayer class to use any other strategy to play the game for any game that is not a 4 coin 2 reveal game, so that any type of game can be played with this class.
