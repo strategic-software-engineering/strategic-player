@@ -1,8 +1,8 @@
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Rule;
-import org.junit.rules.ExpectedException;
+
+import static org.junit.Assert.*;
 
 public class PlayerTest {
     @Before
@@ -13,29 +13,23 @@ public class PlayerTest {
     public void tearDown() {
     }
 
-    @Rule
-    public ExpectedException thrown= ExpectedException.none();
-
     @Test
-    public void beginGameTest(){
-
-    }
-    @Test
-    public void exceptionGameTestArgsInvalid(){
-        thrown.expect(IllegalArgumentException.class);
+    public void beginGameNotNullTest(){
         Player player = new Player();
-        player.beginGame(-1,-1,-1);
+        assertNotNull(player);
     }
 
     @Test
     public void getSlotsToRevealTest(){
-
+        Player player = new Player();
+        player.beginGame(4,2,5);
+        assertEquals(player.getSlotsToReveal(),"??--");
     }
 
     @Test
     public void getNewCoinStatesTest(){
-        
+        Player player = new Player();
+        player.beginGame(4,2,10);
+        assertEquals(player.getNewCoinStates("HT--"),"HH--");
     }
-
-
 }
