@@ -1,0 +1,24 @@
+| <<interface>>                                                            |
+| StrategicPlayer                                                          |
+|--------------------------------------------------------------------------|
+|                                                                          |
+|--------------------------------------------------------------------------|
+| + void beginGame(int coinsPerWheel, int revealsPerSpin, int maxNumSpins) |
+| + CharSequence getSlotsToReveal()                                        |
+| + CharSequence getNewCoinStates(CharSequence revealedPattern)            |
+
+^
+|
+|
+|
+|
+
+| Player                |
+|-----------------------|
+| int coinsPerWheel     |
+| int revealsPerSpin    |
+| int maxNumSpins       |
+| int currentSpinNumber |
+|-----------------------|
+| (see interface)       |
+
