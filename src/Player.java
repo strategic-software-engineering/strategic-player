@@ -8,6 +8,7 @@ public class Player implements StrategicPlayer {
     private int coinsPerWheel;
     private int revealsPerSpin;
     private int maxNumSpins;
+    private boolean newGame=false;
 
     /**
      * Establishes that the player is beginning a new game.
@@ -19,6 +20,7 @@ public class Player implements StrategicPlayer {
         this.coinsPerWheel = coinsPerWheel;
         this.revealsPerSpin = revealsPerSpin;
         this.maxNumSpins = maxNumSpins;
+        newGame = true;
     }
 
     /**
@@ -32,13 +34,24 @@ public class Player implements StrategicPlayer {
     public CharSequence getSlotsToReveal(){
         int count = revealsPerSpin;
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i=0; i<coinsPerWheel; i++){
-            if (count>0) {
-                stringBuilder.append('?');
-                count--;
+
+        // 4 2 strat
+        if (coinsPerWheel == 4 && revealsPerSpin == 2) {
+            if (newGame) {
+                stringBuilder.append("??--");
+                newGame = false;
             }
             else
-                stringBuilder.append('-');
+                stringBuilder.append("?-?-");
+        }
+        else {
+            for (int i = 0; i < coinsPerWheel; i++) {
+                if (count > 0) {
+                    stringBuilder.append('?');
+                    count--;
+                } else
+                    stringBuilder.append('-');
+            }
         }
     return stringBuilder.toString();
     }
