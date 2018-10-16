@@ -14,40 +14,41 @@ https://github.com/strategic-software-engineering/strategic-player
 **Software License** <br />
 MIT License
 
-**User Stories** <br />
-1. As a client, I want the StrategicPlayer class to follow the specified interface so that I can use it as planned.  
+**Incomplete User Stories** <br />
+* As a client, I want the StrategicPlayer class to adopt an optimal strategy for a 4 coin 2 reveal game so that the game can be finished in the smallest number of spins.<br />
+  <I>Acceptance Criteria:</I><br />
+  When I play a 4 coin 2 reveal game, it will be solved in the fewest number of spins possible.
+
+**Completed User Stories** <br />
+* As a client, I want the StrategicPlayer class to follow the specified interface so that I can use it as planned.  
   <I>Acceptance Criteria:</I><br />
   I can call each method in the interface with their specified arguments.
   
-2. As a client, I want the StrategicPlayer class to adopt an optimal strategy for a 4 coin 2 reveal game so that the game can be finished in the smallest number of spins.<br />
-  <I>Acceptance Criteria:</I><br />
-  When I play a 4 coin 2 reveal game, it will be solved in the fewest number of spins possible.
-  
-3. As a client, I want the StrategicPlayer class to use any other strategy to play the game for any game that is not a 4 coin 2 reveal game, so that any type of game can be played with this class.<br />
+* As a client, I want the StrategicPlayer class to use any other strategy to play the game for any game that is not a 4 coin 2 reveal game, so that any type of game can be played with this class.<br />
   <I>Acceptance Criteria:</I><br />
   When I play any game other than 4 coin 2 reveal, the game will be played, but the strategy will not be guaranteed to be optimal or   victorious.
   
-4. As a developer, I want the beginGame method to initialize a game with the parameters user specifies so that the game is exactly what user wants it to be.<br />
+* As a developer, I want the beginGame method to initialize a game with the parameters user specifies so that the game is exactly what user wants it to be.<br />
   <I>Acceptance Criteria:</I><br />
   When beginGame method is called, a game with my specified parameters is created.
   
-5. As a developer, I want the getSlotsToReveal method to return a CharSequence that follows the correct format so that the game is being played correctly.<br />
+* As a developer, I want the getSlotsToReveal method to return a CharSequence that follows the correct format so that the game is being played correctly.<br />
   <I>Acceptance Criteria:</I><br />
   When getSlotsToReveal method is called, the returned CharSequence has the same number of characters as there are coins in the game,   and there will only be 2 character types: "-" and "?".
   
-6. As a developer, I want the getSlotsToReveal method to return a CharSequence that follows the rules so that the game is being played fairly.<br />
+* As a developer, I want the getSlotsToReveal method to return a CharSequence that follows the rules so that the game is being played fairly.<br />
   <I>Acceptance Criteria:</I><br />
   When getSlotsToReveal method is called, the returned CharSequence will contain a number of "?" characters equal to revealsPerSpin.   The rest of the characters will be "-".
   
-7. As a developer, I want the getNewCoinStates method to accept a valid CharSequence as an argument that represents the current state of the wheel so that the player can play the game correctly.<br />
+* As a developer, I want the getNewCoinStates method to accept a valid CharSequence as an argument that represents the current state of the wheel so that the player can play the game correctly.<br />
   <I>Acceptance Criteria:</I><br />
   When getNewCoinStates method is called, the argument I supply will be checked for format rules and to make sure the slots revealed   were the slots requested.
  
-8. As a developer, I want the getNewCoinStates method to return a CharSequence in the correct format with the player's changes to the coins in the wheel so that the player can play the game.<br />
+ As a developer, I want the getNewCoinStates method to return a CharSequence in the correct format with the player's changes to the coins in the wheel so that the player can play the game.<br />
   <I>Acceptance Criteria:</I><br />
   When getNewCoinStates method is called, I expect a valid (format and rules) CharSequence to be returned with any changes to the       revealed coins that the player has made.
   
-9. As a tester, I want the getNewCoinStates method not to attempt to modify non-revealed coins so that the game is fair.<br />
+* As a tester, I want the getNewCoinStates method not to attempt to modify non-revealed coins so that the game is fair.<br />
   <I>Acceptance Criteria:</I><br />
   When getNewCoinStates method is called, I expect the hidden coins (represented by "-") to remain unchanged.
 
