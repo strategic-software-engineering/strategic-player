@@ -60,7 +60,7 @@ MIT License
   <I>Acceptance Criteria:</I><br />
   When getNewCoinStates method is called, the argument I supply will be checked for format rules and to make sure the slots revealed   were the slots requested.
  
- As a developer, I want the getNewCoinStates method to return a CharSequence in the correct format with the player's changes to the coins in the wheel so that the player can play the game.<br />
+* As a developer, I want the getNewCoinStates method to return a CharSequence in the correct format with the player's changes to the coins in the wheel so that the player can play the game.<br />
   <I>Acceptance Criteria:</I><br />
   When getNewCoinStates method is called, I expect a valid (format and rules) CharSequence to be returned with any changes to the       revealed coins that the player has made.
   
