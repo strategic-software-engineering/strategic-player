@@ -15,9 +15,25 @@ https://github.com/strategic-software-engineering/strategic-player
 MIT License
 
 **Incomplete User Stories** <br />
-* As a client, I want the StrategicPlayer class to adopt an optimal strategy for a 4 coin 2 reveal game so that the game can be finished in the smallest number of spins.<br />
+* As a client, I want the Player class to adopt an optimal strategy for a 4 coin 2 reveal game so that the game can be finished in the smallest number of spins.<br />
   <I>Acceptance Criteria:</I><br />
   When I play a 4 coin 2 reveal game, it will be solved in the fewest number of spins possible.
+
+* As a client, I want the beginGame method to not accept invalid values when it is called, so that the game is legitimate and playable.
+  <I>Acceptance Criteria:</I><br />
+  When invalid values are passed to beginGame method, end the game and throw an exception.
+
+* As a client, I want statistical information for how likely the optimal strategy is to win, so that I know how effective the strategy is.
+  <I>Acceptance Criteria:</I><br />
+  There is statistical information about the worst case scenario in the JavaDoc for the Player class.
+
+* As a developer, in the event that the pattern indicates that the first pair of revealed coins matches, in a 4 coin, 2 reveal game, I want the the getNewCoinStates method to flip both revealed coins to the opposite side, so that we have a 1 out of 3 chance of winning the game in the first round.
+  <I>Acceptance Criteria:</I><br />
+  The getNewCoinStates method flips both coins if they match on the first reveal.
+
+* As a developer, during a 4 coin, 2 reveal game, I want the getSlotsToReveal method to return the pattern "??--" the first time the method is called during that game, and the pattern "?-?-" for all plays after that, so that we can guarantee that at least 3/4 coins will match in the first 2 turns.
+  <I>Acceptance Criteria:</I><br />
+  The getCoinsToReveal method returns the pattern "??--" the first time that it is called, and the pattern "?-?-" for all the calls after that.
 
 **Completed User Stories** <br />
 * As a client, I want the StrategicPlayer class to follow the specified interface so that I can use it as planned.  
