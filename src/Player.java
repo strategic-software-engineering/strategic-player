@@ -76,7 +76,6 @@ public class Player implements StrategicPlayer {
         // 4 coins 2 reveals strategy
         if (coinsPerWheel == 4 && revealsPerSpin == 2) {
             if (newGameGetNewCoinStates && revealedPattern == "HH--") {
-                System.out.println("Got in for HH");
                 for (int i = 0; i < coinsPerWheel; i++) {
                     if (stringBuilder.charAt(i) == 'H')
                         stringBuilder.replace(i, (i + 1), "T");
@@ -85,7 +84,6 @@ public class Player implements StrategicPlayer {
                 winSide = 'T';
             }
             else if (newGameGetNewCoinStates && revealedPattern == "TT--") {
-                System.out.println("Got in for TT");
                 for (int i = 0; i < coinsPerWheel; i++) {
                     if (stringBuilder.charAt(i) == 'T')
                         stringBuilder.replace(i, (i + 1), "H");
