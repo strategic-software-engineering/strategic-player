@@ -45,10 +45,6 @@ MIT License
   <I>Acceptance Criteria:</I><br />
   I can call each method in the interface with their specified arguments.
   
-* As a client, I want the StrategicPlayer class to adopt an optimal strategy for a 4 coin 2 reveal game so that the game can be finished in the smallest number of spins.<br />
-  <I>Acceptance Criteria:</I><br />
-  When I play a 4 coin 2 reveal game, it will be solved in the fewest number of spins possible.
-  
 * As a client, I want the StrategicPlayer class to use any other strategy to play the game for any game that is not a 4 coin 2 reveal game, so that any type of game can be played with this class.<br />
   <I>Acceptance Criteria:</I><br />
   When I play any game other than 4 coin 2 reveal, the game will be played, but the strategy will not be guaranteed to be optimal or   victorious.
