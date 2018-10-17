@@ -8,7 +8,9 @@ public class Player implements StrategicPlayer {
     private int coinsPerWheel;
     private int revealsPerSpin;
     private int maxNumSpins;
-    private boolean newGame=false;
+    private boolean newGameGetSlotsToReveal = false;
+    private boolean newGameGetNewCoinStates = false;
+    private char winSide='R';
 
     /**
      * Establishes that the player is beginning a new game.
@@ -20,7 +22,8 @@ public class Player implements StrategicPlayer {
         this.coinsPerWheel = coinsPerWheel;
         this.revealsPerSpin = revealsPerSpin;
         this.maxNumSpins = maxNumSpins;
-        newGame = true;
+        newGameGetSlotsToReveal = true;
+        newGameGetNewCoinStates = true;
     }
 
     /**
@@ -35,15 +38,16 @@ public class Player implements StrategicPlayer {
         int count = revealsPerSpin;
         StringBuilder stringBuilder = new StringBuilder();
 
-        // 4 2 strat
+        // 4 coins 2 reveals strategy
         if (coinsPerWheel == 4 && revealsPerSpin == 2) {
-            if (newGame) {
+            if (newGameGetSlotsToReveal) {
                 stringBuilder.append("??--");
-                newGame = false;
+                newGameGetSlotsToReveal = false;
             }
             else
                 stringBuilder.append("?-?-");
         }
+        // any other game strategy
         else {
             for (int i = 0; i < coinsPerWheel; i++) {
                 if (count > 0) {
@@ -68,9 +72,46 @@ public class Player implements StrategicPlayer {
     public CharSequence getNewCoinStates(CharSequence revealedPattern){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(revealedPattern);
-        for (int i=0; i<coinsPerWheel; i++){
-            if (stringBuilder.charAt(i) == 'T' )
-                stringBuilder.replace(i,(i+1),"H");
+        System.out.println(newGameGetNewCoinStates);
+        // 4 coins 2 reveals strategy
+        if (coinsPerWheel == 4 && revealsPerSpin == 2) {
+            if (newGameGetNewCoinStates && revealedPattern == "HH--") {
+                System.out.println("Got in for HH");
+                for (int i = 0; i < coinsPerWheel; i++) {
+                    if (stringBuilder.charAt(i) == 'H')
+                        stringBuilder.replace(i, (i + 1), "T");
+                }
+                newGameGetNewCoinStates = false;
+                winSide = 'T';
+            }
+            else if (newGameGetNewCoinStates && revealedPattern == "TT--") {
+                System.out.println("Got in for TT");
+                for (int i = 0; i < coinsPerWheel; i++) {
+                    if (stringBuilder.charAt(i) == 'T')
+                        stringBuilder.replace(i, (i + 1), "H");
+                }
+                newGameGetNewCoinStates = false;
+                winSide = 'H';
+            } else {
+                if (winSide == 'T'){
+                    for (int i = 0; i < coinsPerWheel; i++) {
+                        if (stringBuilder.charAt(i) == 'H')
+                            stringBuilder.replace(i, (i + 1), "T");
+                    }
+                }else{
+                    for (int i = 0; i < coinsPerWheel; i++) {
+                        if (stringBuilder.charAt(i) == 'T')
+                            stringBuilder.replace(i, (i + 1), "H");
+                    }
+                }
+            }
+        }
+        // any other game strategy
+        else {
+            for (int i = 0; i < revealedPattern.length(); i++) {
+                if (stringBuilder.charAt(i) == 'T')
+                    stringBuilder.replace(i, (i + 1), "H");
+            }
         }
     return stringBuilder.toString();
     }
