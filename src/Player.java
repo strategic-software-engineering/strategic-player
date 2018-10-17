@@ -36,7 +36,7 @@ public class Player implements StrategicPlayer {
     private int maxNumSpins;
     private boolean newGameGetSlotsToReveal = false;
     private boolean newGameGetNewCoinStates = false;
-    private char winSide='R';
+    private char winSide = 'R';
 
     /**
      * Establishes that the player is beginning a new game.
@@ -48,7 +48,7 @@ public class Player implements StrategicPlayer {
         this.coinsPerWheel = coinsPerWheel;
         this.revealsPerSpin = revealsPerSpin;
         this.maxNumSpins = maxNumSpins;
-		newGameGetSlotsToReveal = true;
+        newGameGetSlotsToReveal = true;
         newGameGetNewCoinStates = true;
     }
 
@@ -98,45 +98,47 @@ public class Player implements StrategicPlayer {
 	public CharSequence getNewCoinStates(CharSequence revealedPattern){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(revealedPattern);
-        // 4 coins 2 reveals strategy
         if (coinsPerWheel == 4 && revealsPerSpin == 2) {
             if (newGameGetNewCoinStates && revealedPattern == "HH--") {
-                for (int i = 0; i < coinsPerWheel; i++) {
-                    if (stringBuilder.charAt(i) == 'H')
-                        stringBuilder.replace(i, (i + 1), "T");
-                }
+                loopThroughElements("T",'H', coinsPerWheel, stringBuilder);
                 newGameGetNewCoinStates = false;
                 winSide = 'T';
             }
             else if (newGameGetNewCoinStates && revealedPattern == "TT--") {
-                for (int i = 0; i < coinsPerWheel; i++) {
-                    if (stringBuilder.charAt(i) == 'T')
-                        stringBuilder.replace(i, (i + 1), "H");
-                }
+                loopThroughElements("H",'T', coinsPerWheel, stringBuilder);
                 newGameGetNewCoinStates = false;
                 winSide = 'H';
             } else {
                 if (winSide == 'T'){
-                    for (int i = 0; i < coinsPerWheel; i++) {
-                        if (stringBuilder.charAt(i) == 'H')
-                            stringBuilder.replace(i, (i + 1), "T");
-                    }
-                }else{
-                    for (int i = 0; i < coinsPerWheel; i++) {
-                        if (stringBuilder.charAt(i) == 'T')
-                            stringBuilder.replace(i, (i + 1), "H");
-                    }
+                    loopThroughElements("T",'H', coinsPerWheel, stringBuilder);
+                }
+                else{
+                    loopThroughElements("H",'T', coinsPerWheel, stringBuilder);
                 }
             }
         }
         // any other game strategy
         else {
-            for (int i = 0; i < revealedPattern.length(); i++) {
-                if (stringBuilder.charAt(i) == 'T')
-                    stringBuilder.replace(i, (i + 1), "H");
-            }
+            loopThroughElements("H",'T', revealedPattern.length(), stringBuilder);
         }
 		return stringBuilder.toString();
     }
 
+    /**
+     * This method performs a universal loop that would let the developer to change the values of what side they want to
+     * flip, as well as specify what is the length of the sequence. It is also building a sequence for the return.
+     * @param sideWanted String that will change change the value to either "H" or "T"
+     * @param sideHave character that specifies if it is 'H' or 'T'
+     * @param lengthOfTheSequence specifies the proper length of a sequence
+     * @param stringBuilder builds up the string
+     * @return a proper set-pattern consisting of '-', 'H', and 'T'
+     */
+    private CharSequence loopThroughElements(String sideWanted,char sideHave, int lengthOfTheSequence,
+                                             StringBuilder stringBuilder){
+        for (int i = 0; i < lengthOfTheSequence; i++) {
+            if (stringBuilder.charAt(i) == sideHave)
+                stringBuilder.replace(i, (i + 1), sideWanted);
+        }
+        return stringBuilder.toString();
+    }
 }
