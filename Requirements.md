@@ -28,7 +28,7 @@ MIT License
   <I>Acceptance Criteria:</I><br />
   When I play a 4 coin 2 reveal game, it will be solved in the fewest number of spins possible.
   
-  * As a client, I want statistical information for how likely the optimal strategy is to win, so that I know how effective the strategy is.
+* As a client, I want statistical information for how likely the optimal strategy is to win, so that I know how effective the strategy is.
   <I>Acceptance Criteria:</I><br />
   There is statistical information about the worst case scenario in the JavaDoc for the Player class.
 
