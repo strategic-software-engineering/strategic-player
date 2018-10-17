@@ -36,7 +36,7 @@ public class Player implements StrategicPlayer {
     private int maxNumSpins;
     private boolean newGameGetSlotsToReveal = false;
     private boolean newGameGetNewCoinStates = false;
-    private char winSide='R';
+    private char winSide = 'R';
 
     /**
      * Establishes that the player is beginning a new game.
@@ -123,11 +123,22 @@ public class Player implements StrategicPlayer {
         }
 		return stringBuilder.toString();
     }
-    private CharSequence loopThroughElements(String sideWanted,char sideHave, int limit,StringBuilder sb){
-        for (int i = 0; i < limit; i++) {
-            if (sb.charAt(i) == sideHave)
-                sb.replace(i, (i + 1), sideWanted);
+
+    /**
+     * This method performs a universal loop that would let the developer to change the values of what side they want to
+     * flip, as well as specify what is the length of the sequence. It is also building a sequence for the return.
+     * @param sideWanted String that will change change the value to either "H" or "T"
+     * @param sideHave character that specifies if it is 'H' or 'T'
+     * @param lengthOfTheSequence specifies the proper length of a sequence
+     * @param stringBuilder builds up the string
+     * @return a proper set-pattern consisting of '-', 'H', and 'T'
+     */
+    private CharSequence loopThroughElements(String sideWanted,char sideHave, int lengthOfTheSequence,
+                                             StringBuilder stringBuilder){
+        for (int i = 0; i < lengthOfTheSequence; i++) {
+            if (stringBuilder.charAt(i) == sideHave)
+                stringBuilder.replace(i, (i + 1), sideWanted);
         }
-        return sb.toString();
+        return stringBuilder.toString();
     }
 }
