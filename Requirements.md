@@ -22,6 +22,10 @@ MIT License
 * As a tester, I want to be able to run a checkstyle with no errors so that the quality of the product improves. <br />
   <I>Acceptance Criteria:</I><br />
   Getting no errors after running the checkstyle.
+
+* As a developer, I want to have private method for the loops that repeat themselves so that the code doesnt have as many repeats. <br />
+  <I>Acceptance Criteria:</I><br />
+  Private method that gets rid of the loop repeats in the code is designed. 
   
 **Completed User Stories for the second delivery** <br />
 * As a client, I want the Player class to adopt an optimal strategy for a 4 coin 2 reveal game so that the game can be finished in the smallest number of spins.<br />
