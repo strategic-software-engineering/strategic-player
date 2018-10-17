@@ -98,45 +98,36 @@ public class Player implements StrategicPlayer {
 	public CharSequence getNewCoinStates(CharSequence revealedPattern){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(revealedPattern);
-        // 4 coins 2 reveals strategy
         if (coinsPerWheel == 4 && revealsPerSpin == 2) {
             if (newGameGetNewCoinStates && revealedPattern == "HH--") {
-                for (int i = 0; i < coinsPerWheel; i++) {
-                    if (stringBuilder.charAt(i) == 'H')
-                        stringBuilder.replace(i, (i + 1), "T");
-                }
+                loopThroughElements("T",'H', coinsPerWheel, stringBuilder);
                 newGameGetNewCoinStates = false;
                 winSide = 'T';
             }
             else if (newGameGetNewCoinStates && revealedPattern == "TT--") {
-                for (int i = 0; i < coinsPerWheel; i++) {
-                    if (stringBuilder.charAt(i) == 'T')
-                        stringBuilder.replace(i, (i + 1), "H");
-                }
+                loopThroughElements("H",'T', coinsPerWheel, stringBuilder);
                 newGameGetNewCoinStates = false;
                 winSide = 'H';
             } else {
                 if (winSide == 'T'){
-                    for (int i = 0; i < coinsPerWheel; i++) {
-                        if (stringBuilder.charAt(i) == 'H')
-                            stringBuilder.replace(i, (i + 1), "T");
-                    }
-                }else{
-                    for (int i = 0; i < coinsPerWheel; i++) {
-                        if (stringBuilder.charAt(i) == 'T')
-                            stringBuilder.replace(i, (i + 1), "H");
-                    }
+                    loopThroughElements("T",'H', coinsPerWheel, stringBuilder);
+                }
+                else{
+                    loopThroughElements("H",'T', coinsPerWheel, stringBuilder);
                 }
             }
         }
         // any other game strategy
         else {
-            for (int i = 0; i < revealedPattern.length(); i++) {
-                if (stringBuilder.charAt(i) == 'T')
-                    stringBuilder.replace(i, (i + 1), "H");
-            }
+            loopThroughElements("H",'T', revealedPattern.length(), stringBuilder);
         }
 		return stringBuilder.toString();
     }
-
+    private CharSequence loopThroughElements(String sideWanted,char sideHave, int limit,StringBuilder sb){
+        for (int i = 0; i < limit; i++) {
+            if (sb.charAt(i) == sideHave)
+                sb.replace(i, (i + 1), sideWanted);
+        }
+        return sb.toString();
+    }
 }
