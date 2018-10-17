@@ -57,11 +57,6 @@ public class Player implements StrategicPlayer {
      * The returned pattern is of proper length, contains only
      * '?' and '-', and has exactly the number of '?'
      * as the permitted reveals per spin.
-	 * <br>
-	 * The method will return "??--" on the first call, and "?-?-" on
-	 * all subsequent calls for a 4 coin, 2 reveal game. This is part of
-	 * its strategy, which is explained more fully in the description
-	 * of the getNewCoinStates method.
      * @return a proper reveal-pattern consisting of '-' and '?' with
      *         exactly the number of '?' as permitted by reveals-per-spin
      */
@@ -96,7 +91,6 @@ public class Player implements StrategicPlayer {
      * The returned pattern is a copy of the parameter
      * in which all '-' are preserved and each location of
      * 'H' and 'T' may be replaced by either 'H' or 'T'.
-	 * <br><br>
      * @param revealedPattern a proper-length pattern
      *                        consisting of '-', 'H', and 'T'
      * @return a proper set-pattern consisting of '-', 'H', and 'T'
