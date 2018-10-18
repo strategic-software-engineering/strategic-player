@@ -5,7 +5,7 @@
  * @version 1.2.2 (20181004)
  */
 public class Main {
-    public static void main (String[]args){
+    public static void main (final String[]args){
         int coinsPerWheel = 4;
         int revealsPerSpin = 2;
         int maxNumSpins = 10;
