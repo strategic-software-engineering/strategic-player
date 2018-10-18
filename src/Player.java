@@ -2,7 +2,7 @@
  * A player of the Spin-the-Wheel Coin Matching Game.
  *<br><br>
  * Strategy for a 4 coin, 2 reveal game: <br>
- * The player will first request that two adjacent coins are revealed, 
+ * The player will first request that two adjacent coins are revealed,
  * which will be "??--". If these two coins are the same, getNewCoinStates
  * will flip both of them. Since the game cannot begin with a winning
  * spin, this gives us an immediate 1/3 chance of victory if the two
@@ -19,34 +19,62 @@
  * The probability for success for this strategy in the event that the
  * first two coins match is: P=1/3 for the first move, and P=1-(1/2)^n,
  * where n equals the number of moves after the first one, for all
- * subsequent moves. The probability of winning in 9 moves is 99.96%<br>
+ * subsequent moves. The probability of winning in 9 moves is 99.6%<br>
  * The probability for success for this strategy when the first two
  * coins do not match is: P=1/4 for the first move, and P=1-(1/2)^n,
- * where n equals the number of moves after the first one, for all 
+ * where n equals the number of moves after the first one, for all
  * subsequent moves. The probability of winning in 9 moves is 99.2%<br>
  *
  * @author CS4250 Fall 2018
  * @version 1.2.2 (20181004)
  */
 public class Player implements StrategicPlayer {
+    /**
+     *
+     */
     private int coinsPerWheel;
+    /**
+     *
+     */
     private int revealsPerSpin;
+    /**
+     *
+     */
     private int maxNumSpins;
+    /**
+     *
+     */
     private boolean newGameGetSlotsToReveal = false;
+    /**
+     *
+     */
     private boolean newGameGetNewCoinStates = false;
-    private char winSide='R';
+    /**
+     *
+     */
+    private char winSide = 'R';
+    /**
+     *
+     */
+    private final int strategicCoinValue = 4;
+    /**
+     *
+     */
+    private final int strategicRevealValue = 2;
 
     /**
      * Establishes that the player is beginning a new game.
-     * @param coinsPerWheel the number of coins in the wheel
-     * @param revealsPerSpin the number of coins revealed per turn/spin
-     * @param maxNumSpins the maximum number of spin allowed for the game
+     * @param coinsPerWheelParam the number of coins in the wheel
+     * @param revealsPerSpinParam the number of coins revealed per turn/spin
+     * @param maxNumSpinsParam the maximum number of spin allowed for the game
      */
-    public void beginGame(int coinsPerWheel, int revealsPerSpin, int maxNumSpins){
-        this.coinsPerWheel = coinsPerWheel;
-        this.revealsPerSpin = revealsPerSpin;
-        this.maxNumSpins = maxNumSpins;
-		newGameGetSlotsToReveal = true;
+    public void beginGame(final int coinsPerWheelParam,
+                          final int revealsPerSpinParam,
+                          final int maxNumSpinsParam) {
+        this.coinsPerWheel = coinsPerWheelParam;
+        this.revealsPerSpin = revealsPerSpinParam;
+        this.maxNumSpins = maxNumSpinsParam;
+        newGameGetSlotsToReveal = true;
         newGameGetNewCoinStates = true;
     }
 
@@ -55,38 +83,33 @@ public class Player implements StrategicPlayer {
      * The returned pattern is of proper length, contains only
      * '?' and '-', and has exactly the number of '?'
      * as the permitted reveals per spin.
-	 * <br>
-	 * The method will return "??--" on the first call, and "?-?-" on
-	 * all subsequent calls for a 4 coin, 2 reveal game. This is part of
-	 * its strategy, which is explained more fully in the description
-	 * of the getNewCoinStates method.
      * @return a proper reveal-pattern consisting of '-' and '?' with
      *         exactly the number of '?' as permitted by reveals-per-spin
      */
-    public CharSequence getSlotsToReveal(){
+    public CharSequence getSlotsToReveal() {
         int count = revealsPerSpin;
         StringBuilder stringBuilder = new StringBuilder();
 
-        // 4 coins 2 reveals strategy
-        if (coinsPerWheel == 4 && revealsPerSpin == 2) {
+        // four coins two reveals strategy
+        if (coinsPerWheel == strategicCoinValue && revealsPerSpin
+                == strategicRevealValue) {
             if (newGameGetSlotsToReveal) {
                 stringBuilder.append("??--");
                 newGameGetSlotsToReveal = false;
-            }
-            else
+            } else {
                 stringBuilder.append("?-?-");
-        }
-        // any other game strategy
-        else {
+            }
+        } else { // any other game strategy
             for (int i = 0; i < coinsPerWheel; i++) {
                 if (count > 0) {
                     stringBuilder.append('?');
                     count--;
-                } else
+                } else {
                     stringBuilder.append('-');
+                }
             }
         }
-		return stringBuilder.toString();
+        return stringBuilder.toString();
     }
 
     /**
@@ -94,53 +117,60 @@ public class Player implements StrategicPlayer {
      * The returned pattern is a copy of the parameter
      * in which all '-' are preserved and each location of
      * 'H' and 'T' may be replaced by either 'H' or 'T'.
-	 * <br><br>
      * @param revealedPattern a proper-length pattern
      *                        consisting of '-', 'H', and 'T'
      * @return a proper set-pattern consisting of '-', 'H', and 'T'
      */
-	public CharSequence getNewCoinStates(CharSequence revealedPattern){
+    public CharSequence getNewCoinStates(final CharSequence
+                                                 revealedPattern) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(revealedPattern);
-        // 4 coins 2 reveals strategy
-        if (coinsPerWheel == 4 && revealsPerSpin == 2) {
+        if (coinsPerWheel == strategicCoinValue && revealsPerSpin
+                == strategicRevealValue) {
             if (newGameGetNewCoinStates && revealedPattern == "HH--") {
-                for (int i = 0; i < coinsPerWheel; i++) {
-                    if (stringBuilder.charAt(i) == 'H')
-                        stringBuilder.replace(i, (i + 1), "T");
-                }
+                loopThroughElements("T", 'H', coinsPerWheel, stringBuilder);
                 newGameGetNewCoinStates = false;
                 winSide = 'T';
-            }
-            else if (newGameGetNewCoinStates && revealedPattern == "TT--") {
-                for (int i = 0; i < coinsPerWheel; i++) {
-                    if (stringBuilder.charAt(i) == 'T')
-                        stringBuilder.replace(i, (i + 1), "H");
-                }
+            } else if (newGameGetNewCoinStates && revealedPattern == "TT--") {
+                loopThroughElements("H", 'T', coinsPerWheel, stringBuilder);
                 newGameGetNewCoinStates = false;
                 winSide = 'H';
             } else {
-                if (winSide == 'T'){
-                    for (int i = 0; i < coinsPerWheel; i++) {
-                        if (stringBuilder.charAt(i) == 'H')
-                            stringBuilder.replace(i, (i + 1), "T");
-                    }
-                }else{
-                    for (int i = 0; i < coinsPerWheel; i++) {
-                        if (stringBuilder.charAt(i) == 'T')
-                            stringBuilder.replace(i, (i + 1), "H");
-                    }
+                if (winSide == 'T') {
+                    loopThroughElements("T", 'H', coinsPerWheel, stringBuilder);
+                } else {
+                    loopThroughElements("H", 'T', coinsPerWheel, stringBuilder);
                 }
             }
+        } else { // any other game strategy
+            loopThroughElements("H", 'T', revealedPattern.length(),
+                    stringBuilder);
         }
-        // any other game strategy
-        else {
-            for (int i = 0; i < revealedPattern.length(); i++) {
-                if (stringBuilder.charAt(i) == 'T')
-                    stringBuilder.replace(i, (i + 1), "H");
-            }
-        }
-		return stringBuilder.toString();
+        return stringBuilder.toString();
     }
 
+    /**
+     * This method performs a universal loop that would let the developer to
+     * change the values of what side they want to flip, as well as specify
+     * what is the length of the sequence. It is also building a sequence for
+     * the return.
+     * @param sideWanted String that will change change the value to either
+     *                   "H" or "T"
+     * @param sideHave character that specifies if it is 'H' or 'T'
+     * @param lengthOfTheSequence specifies the proper length of a sequence
+     * @param stringBuilder builds up the string
+     * @return a proper set-pattern consisting of '-', 'H', and 'T'
+     */
+    private CharSequence loopThroughElements(final String sideWanted,
+                                             final char sideHave,
+                                             final int lengthOfTheSequence,
+                                             final StringBuilder
+                                                     stringBuilder) {
+        for (int i = 0; i < lengthOfTheSequence; i++) {
+            if (stringBuilder.charAt(i) == sideHave) {
+                stringBuilder.replace(i, (i + 1), sideWanted);
+            }
+        }
+        return stringBuilder.toString();
+    }
 }
