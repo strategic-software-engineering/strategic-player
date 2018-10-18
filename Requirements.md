@@ -23,15 +23,12 @@ MIT License
   <I>Acceptance Criteria:</I><br />
   Getting no errors after running the checkstyle.
 
-* As a developer, I want to have private method for the loops that repeat themselves so that the code doesnt have as many repeats. <br />
+**Complete User Stories for the second delivery that needed revision** <br />
+* As a client, I want the Player class to adopt a good strategy for a 4 coin 2 reveal game so that the player has a high probability of winning.<br />
   <I>Acceptance Criteria:</I><br />
-  Private method that gets rid of the loop repeats in the code is designed. 
+  When I play a 4 coin 2 reveal game, it will have a 99%+ probability of winning after 9 spins ?
   
 **Completed User Stories for the second delivery** <br />
-* As a client, I want the Player class to adopt an optimal strategy for a 4 coin 2 reveal game so that the game can be finished in the smallest number of spins.<br />
-  <I>Acceptance Criteria:</I><br />
-  When I play a 4 coin 2 reveal game, it will be solved in the fewest number of spins possible.
-  
 * As a client, I want statistical information for how likely the optimal strategy is to win, so that I know how effective the strategy is.<br />
   <I>Acceptance Criteria:</I><br />
   There is statistical information about the worst case scenario in the JavaDoc for the Player class.
@@ -48,10 +45,6 @@ MIT License
 * As a client, I want the StrategicPlayer class to follow the specified interface so that I can use it as planned.  
   <I>Acceptance Criteria:</I><br />
   I can call each method in the interface with their specified arguments.
-  
-* As a client, I want the StrategicPlayer class to adopt an optimal strategy for a 4 coin 2 reveal game so that the game can be finished in the smallest number of spins.<br />
-  <I>Acceptance Criteria:</I><br />
-  When I play a 4 coin 2 reveal game, it will be solved in the fewest number of spins possible.
   
 * As a client, I want the StrategicPlayer class to use any other strategy to play the game for any game that is not a 4 coin 2 reveal game, so that any type of game can be played with this class.<br />
   <I>Acceptance Criteria:</I><br />
