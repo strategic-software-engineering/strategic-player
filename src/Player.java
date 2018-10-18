@@ -19,13 +19,13 @@
  * This strategy does not guarantee a victory, but does ensure a 
  * geometric probability of victory, which is fairly reliable. <br>
  * The probability for success for this strategy in the event that the
- * first two coins match is: P=1/3 for the first move, and P=1-(1/2)^n,
- * where n equals the number of moves after the first one, for all
- * subsequent moves.<br>
+ * first two coins match is: P=1/3+(1-(1/2)^n), where n equals the
+ * number of spins, assuming the first move is made without a spin, 
+ * since it is a new game and the coins are already randomized.<br>
  * The probability for success for this strategy when the first two
- * coins do not match is: P=1/4 for the first move, and P=1-(1/2)^n,
- * where n equals the number of moves after the first one, for all 
- * subsequent moves.<br>
+ * coins do not match is: P=1/4+(1-(1/2)^n), where n equals the number
+ * of spins, assuming the first move is made without a spin, since it
+ * is a new game and the coins are already randomized.<br>
  *
  * @author CS4250 Fall 2018
  * @version 1.2.2 (20181004)
