@@ -19,7 +19,7 @@
  * The probability for success for this strategy in the event that the
  * first two coins match is: P=1/3 for the first move, and P=1-(1/2)^n,
  * where n equals the number of moves after the first one, for all
- * subsequent moves. The probability of winning in 9 moves is 99.96%<br>
+ * subsequent moves. The probability of winning in 9 moves is 99.6%<br>
  * The probability for success for this strategy when the first two
  * coins do not match is: P=1/4 for the first move, and P=1-(1/2)^n,
  * where n equals the number of moves after the first one, for all 
