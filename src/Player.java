@@ -102,7 +102,6 @@ public class Player implements StrategicPlayer {
 	public CharSequence getNewCoinStates(CharSequence revealedPattern){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(revealedPattern);
-        System.out.println(newGameGetNewCoinStates);
         // 4 coins 2 reveals strategy
         if (coinsPerWheel == 4 && revealsPerSpin == 2) {
             if (newGameGetNewCoinStates && revealedPattern == "HH--") {
