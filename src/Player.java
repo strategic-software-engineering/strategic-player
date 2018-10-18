@@ -29,24 +29,43 @@
  * @version 1.2.2 (20181004)
  */
 public class Player implements StrategicPlayer {
+    /**
+     *
+     */
     private int coinsPerWheel;
+    /**
+     *
+     */
     private int revealsPerSpin;
+    /**
+     *
+     */
     private int maxNumSpins;
+    /**
+     *
+     */
     private boolean newGameGetSlotsToReveal = false;
+    /**
+     *
+     */
     private boolean newGameGetNewCoinStates = false;
+    /**
+     *
+     */
     private char winSide = 'R';
 
     /**
      * Establishes that the player is beginning a new game.
-     * @param coinsPerWheel the number of coins in the wheel
-     * @param revealsPerSpin the number of coins revealed per turn/spin
-     * @param maxNumSpins the maximum number of spin allowed for the game
+     * @param coinsPerWheelParam the number of coins in the wheel
+     * @param revealsPerSpinParam the number of coins revealed per turn/spin
+     * @param maxNumSpinsParam the maximum number of spin allowed for the game
      */
-    public void beginGame(final int coinsPerWheel, final int revealsPerSpin,
-                          final int maxNumSpins) {
-        this.coinsPerWheel = coinsPerWheel;
-        this.revealsPerSpin = revealsPerSpin;
-        this.maxNumSpins = maxNumSpins;
+    public void beginGame(final int coinsPerWheelParam,
+                          final int revealsPerSpinParam,
+                          final int maxNumSpinsParam) {
+        this.coinsPerWheel = coinsPerWheelParam;
+        this.revealsPerSpin = revealsPerSpinParam;
+        this.maxNumSpins = maxNumSpinsParam;
         newGameGetSlotsToReveal = true;
         newGameGetNewCoinStates = true;
     }
