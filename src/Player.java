@@ -53,6 +53,14 @@ public class Player implements StrategicPlayer {
      *
      */
     private char winSide = 'R';
+    /**
+     *
+     */
+    private final int strategicCoinValue = 4;
+    /**
+     *
+     */
+    private final int strategicRevealValue = 2;
 
     /**
      * Establishes that the player is beginning a new game.
@@ -83,7 +91,8 @@ public class Player implements StrategicPlayer {
         StringBuilder stringBuilder = new StringBuilder();
 
         // four coins two reveals strategy
-        if (coinsPerWheel == 4 && revealsPerSpin == 2) {
+        if (coinsPerWheel == strategicCoinValue && revealsPerSpin
+                == strategicRevealValue) {
             if (newGameGetSlotsToReveal) {
                 stringBuilder.append("??--");
                 newGameGetSlotsToReveal = false;
@@ -116,7 +125,8 @@ public class Player implements StrategicPlayer {
                                                  revealedPattern) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(revealedPattern);
-        if (coinsPerWheel == 4 && revealsPerSpin == 2) {
+        if (coinsPerWheel == strategicCoinValue && revealsPerSpin
+                == strategicRevealValue) {
             if (newGameGetNewCoinStates && revealedPattern == "HH--") {
                 loopThroughElements("T", 'H', coinsPerWheel, stringBuilder);
                 newGameGetNewCoinStates = false;
