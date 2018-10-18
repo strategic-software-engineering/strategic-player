@@ -16,16 +16,14 @@
  * scenario, that three coins match, and has a 1/2 chance of victory.
  * For all subsequent moves, the same "?-?-" pattern will be requested,
  * which gives each of these moves a 1/2 chance of victory. <br>
- * This strategy does not guarantee a victory, but does ensure a 
- * geometric probability of victory, which is fairly reliable. <br>
  * The probability for success for this strategy in the event that the
  * first two coins match is: P=1/3 for the first move, and P=1-(1/2)^n,
  * where n equals the number of moves after the first one, for all
- * subsequent moves.<br>
+ * subsequent moves. The probability of winning in 9 moves is 99.96%<br>
  * The probability for success for this strategy when the first two
  * coins do not match is: P=1/4 for the first move, and P=1-(1/2)^n,
  * where n equals the number of moves after the first one, for all 
- * subsequent moves.<br>
+ * subsequent moves. The probability of winning in 9 moves is 99.2%<br>
  *
  * @author CS4250 Fall 2018
  * @version 1.2.2 (20181004)
