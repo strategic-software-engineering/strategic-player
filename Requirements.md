@@ -17,7 +17,7 @@ MIT License
 **Incomplete User Stories** <br />
 * As a client, I want the beginGame method to not accept invalid values when it is called, so that the game is legitimate and playable.<br />
   <I>Acceptance Criteria:</I><br />
-  When invalid values are passed to beginGame method, end the game and throw an exception.
+  When invalid values are passed to beginGame method, the game ends and throws an exception.
 
 * As a tester, I want to be able to run a checkstyle with no errors so that the quality of the product improves. <br />
   <I>Acceptance Criteria:</I><br />
@@ -26,7 +26,7 @@ MIT License
 **Complete User Stories for the second delivery that needed revision** <br />
 * As a client, I want the Player class to adopt a good strategy for a 4 coin 2 reveal game so that the player has a high probability of winning.<br />
   <I>Acceptance Criteria:</I><br />
-  When I play a 4 coin 2 reveal game, it will have a 99%+ probability of winning after 9 spins ?
+  When I play a 4 coin 2 reveal game, it will have a 99%+ probability of winning after 9 spins.
   
 **Completed User Stories for the second delivery** <br />
 * As a client, I want statistical information for how likely the optimal strategy is to win, so that I know how effective the strategy is.<br />
