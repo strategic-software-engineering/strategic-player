@@ -2,7 +2,7 @@
  * A player of the Spin-the-Wheel Coin Matching Game.
  *<br><br>
  * Strategy for a 4 coin, 2 reveal game: <br>
- * The player will first request that two adjacent coins are revealed, 
+ * The player will first request that two adjacent coins are revealed,
  * which will be "??--". If these two coins are the same, getNewCoinStates
  * will flip both of them. Since the game cannot begin with a winning
  * spin, this gives us an immediate 1/3 chance of victory if the two
@@ -22,7 +22,7 @@
  * subsequent moves. The probability of winning in 9 moves is 99.6%<br>
  * The probability for success for this strategy when the first two
  * coins do not match is: P=1/4 for the first move, and P=1-(1/2)^n,
- * where n equals the number of moves after the first one, for all 
+ * where n equals the number of moves after the first one, for all
  * subsequent moves. The probability of winning in 9 moves is 99.2%<br>
  *
  * @author CS4250 Fall 2018
@@ -42,7 +42,8 @@ public class Player implements StrategicPlayer {
      * @param revealsPerSpin the number of coins revealed per turn/spin
      * @param maxNumSpins the maximum number of spin allowed for the game
      */
-    public void beginGame(int coinsPerWheel, int revealsPerSpin, int maxNumSpins){
+    public void beginGame(final int coinsPerWheel, final int revealsPerSpin,
+                          final int maxNumSpins) {
         this.coinsPerWheel = coinsPerWheel;
         this.revealsPerSpin = revealsPerSpin;
         this.maxNumSpins = maxNumSpins;
@@ -58,30 +59,29 @@ public class Player implements StrategicPlayer {
      * @return a proper reveal-pattern consisting of '-' and '?' with
      *         exactly the number of '?' as permitted by reveals-per-spin
      */
-    public CharSequence getSlotsToReveal(){
+    public CharSequence getSlotsToReveal() {
         int count = revealsPerSpin;
         StringBuilder stringBuilder = new StringBuilder();
 
-        // 4 coins 2 reveals strategy
+        // four coins two reveals strategy
         if (coinsPerWheel == 4 && revealsPerSpin == 2) {
             if (newGameGetSlotsToReveal) {
                 stringBuilder.append("??--");
                 newGameGetSlotsToReveal = false;
-            }
-            else
+            } else {
                 stringBuilder.append("?-?-");
-        }
-        // any other game strategy
-        else {
+            }
+        } else { // any other game strategy
             for (int i = 0; i < coinsPerWheel; i++) {
                 if (count > 0) {
                     stringBuilder.append('?');
                     count--;
-                } else
+                } else {
                     stringBuilder.append('-');
+                }
             }
         }
-		return stringBuilder.toString();
+        return stringBuilder.toString();
     }
 
     /**
@@ -93,49 +93,54 @@ public class Player implements StrategicPlayer {
      *                        consisting of '-', 'H', and 'T'
      * @return a proper set-pattern consisting of '-', 'H', and 'T'
      */
-	public CharSequence getNewCoinStates(CharSequence revealedPattern){
+    public CharSequence getNewCoinStates(final CharSequence
+                                                 revealedPattern) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(revealedPattern);
         if (coinsPerWheel == 4 && revealsPerSpin == 2) {
             if (newGameGetNewCoinStates && revealedPattern == "HH--") {
-                loopThroughElements("T",'H', coinsPerWheel, stringBuilder);
+                loopThroughElements("T", 'H', coinsPerWheel, stringBuilder);
                 newGameGetNewCoinStates = false;
                 winSide = 'T';
-            }
-            else if (newGameGetNewCoinStates && revealedPattern == "TT--") {
-                loopThroughElements("H",'T', coinsPerWheel, stringBuilder);
+            } else if (newGameGetNewCoinStates && revealedPattern == "TT--") {
+                loopThroughElements("H", 'T', coinsPerWheel, stringBuilder);
                 newGameGetNewCoinStates = false;
                 winSide = 'H';
             } else {
-                if (winSide == 'T'){
-                    loopThroughElements("T",'H', coinsPerWheel, stringBuilder);
-                }
-                else{
-                    loopThroughElements("H",'T', coinsPerWheel, stringBuilder);
+                if (winSide == 'T') {
+                    loopThroughElements("T", 'H', coinsPerWheel, stringBuilder);
+                } else {
+                    loopThroughElements("H", 'T', coinsPerWheel, stringBuilder);
                 }
             }
+        } else { // any other game strategy
+            loopThroughElements("H", 'T', revealedPattern.length(),
+                    stringBuilder);
         }
-        // any other game strategy
-        else {
-            loopThroughElements("H",'T', revealedPattern.length(), stringBuilder);
-        }
-		return stringBuilder.toString();
+        return stringBuilder.toString();
     }
 
     /**
-     * This method performs a universal loop that would let the developer to change the values of what side they want to
-     * flip, as well as specify what is the length of the sequence. It is also building a sequence for the return.
-     * @param sideWanted String that will change change the value to either "H" or "T"
+     * This method performs a universal loop that would let the developer to
+     * change the values of what side they want to flip, as well as specify
+     * what is the length of the sequence. It is also building a sequence for
+     * the return.
+     * @param sideWanted String that will change change the value to either
+     *                   "H" or "T"
      * @param sideHave character that specifies if it is 'H' or 'T'
      * @param lengthOfTheSequence specifies the proper length of a sequence
      * @param stringBuilder builds up the string
      * @return a proper set-pattern consisting of '-', 'H', and 'T'
      */
-    private CharSequence loopThroughElements(String sideWanted,char sideHave, int lengthOfTheSequence,
-                                             StringBuilder stringBuilder){
+    private CharSequence loopThroughElements(final String sideWanted,
+                                             final char sideHave,
+                                             final int lengthOfTheSequence,
+                                             final StringBuilder
+                                                     stringBuilder) {
         for (int i = 0; i < lengthOfTheSequence; i++) {
-            if (stringBuilder.charAt(i) == sideHave)
+            if (stringBuilder.charAt(i) == sideHave) {
                 stringBuilder.replace(i, (i + 1), sideWanted);
+            }
         }
         return stringBuilder.toString();
     }
