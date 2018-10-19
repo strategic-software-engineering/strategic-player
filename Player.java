@@ -34,7 +34,7 @@ public class Player implements StrategicPlayer {
      */
     private int coinsPerWheel;
     /**
-     * holds a value of the number of reveals allowed in the current game.  
+     * holds a value of the number of reveals allowed in the current game.
      */
     private int revealsPerSpin;
     /**
