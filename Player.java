@@ -30,35 +30,35 @@
  */
 public class Player implements StrategicPlayer {
     /**
-     * holds a value of the number of coins in the current game
+     * holds a value of the number of coins in the current game.
      */
     private int coinsPerWheel;
     /**
-     * holds a value of the number of reveals allowed in the current game  
+     * holds a value of the number of reveals allowed in the current game.  
      */
     private int revealsPerSpin;
     /**
-     * holds a value of the maximum number of spins allowed in the current game
+     * holds a value of the maximum number of spins allowed in the current game.
      */
     private int maxNumSpins;
     /**
-     * indicates if it is the first time getSlotsToReaveal() method is used
+     * indicates if it is the first time getSlotsToReaveal() method is used.
      */
     private boolean newGameGetSlotsToReveal = false;
     /**
-     * indicates if it is the first time getNewCoinStates() method is used
+     * indicates if it is the first time getNewCoinStates() method is used.
      */
     private boolean newGameGetNewCoinStates = false;
     /**
-     * hold the value of the target side for the win, H or T;
+     * hold the value of the target side for the win, H or T.
      */
     private char winSide = 'R';
     /**
-     * holds a coin number for the four coins two reaveal strategy
+     * holds a coin number for the four coins two reaveal strategy.
      */
     private final int strategicCoinValue = 4;
     /**
-     * holds a number of reveals for the four coins two reaveal strategy
+     * holds a number of reveals for the four coins two reaveal strategy.
      */
     private final int strategicRevealValue = 2;
 
