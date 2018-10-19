@@ -8,47 +8,54 @@ import java.util.Random;
  * The wheel class exposes the public API that an interface may
  * use to play the game.
  *
- * @author Jon Bowen, James Niedfeldt, Evan Ballinger, Doug McLaughlin, Levi Portenier
+ * @author Team Obelisk
  * @version 0.0.1
  */
 public class Wheel {
 
-    private List<Slot> _slots;  // list of wheel slots
-    private int _startPosition; // position that spin landed on
+    /**
+     * The slots of the wheel.
+     */
+    private List<Slot> slots;
+    /**
+     * The position that the spin landed on.
+     */
+    private int startPosition;
 
-    //private long RANDOM_SEED = 2018;
-    //private Random _rng = new Random(RANDOM_SEED);
-    private Random _rng = new Random();
+    /**
+     * The random number generator for making new coins.
+     */
+    private Random rng = new Random();
 
     /**
      * Constructor for wheel.
      *
      * @param numSlots The number of slots to include in the wheel
      */
-    public Wheel(int numSlots) {
-        _slots = new ArrayList<Slot>(numSlots);
-        _startPosition = 0;
+    public Wheel(final int numSlots) {
+        slots = new ArrayList<Slot>(numSlots);
+        startPosition = 0;
 
         // random initial coin configuration
         for (int i = 0; i < numSlots; i++) {
             Slot s = new Slot(new Coin(), false);
-            _slots.add(s);
+            slots.add(s);
         }
     }
 
     /**
      * @return A string displaying the wheel state starting
-     * from _startPosition
+     * from startPosition
      */
     public String wheelInfoAsString() {
         String positionStr = "";
         String stateStr = "";
 
-        int position = _startPosition;
+        int position = startPosition;
         int slotsProcessed = 0;
 
-        while (slotsProcessed < _slots.size()) {
-            Slot s = _slots.get(position);
+        while (slotsProcessed < slots.size()) {
+            Slot s = slots.get(position);
             if (s.isHidden()) {
                 stateStr += "-";
             } else {
@@ -57,27 +64,30 @@ public class Wheel {
             }
 
             slotsProcessed++;
-            position = (position + 1) % _slots.size();
+            position = (position + 1) % slots.size();
         }
 
         return stateStr;
     }
 
     /**
-     * Randomly chooses a new _startPosition for the wheel
+     * Randomly chooses a new startPosition for the wheel.
      */
     public void spin() {
-        _startPosition = (int) (_rng.nextDouble() * _slots.size());
+        startPosition = (int) (rng.nextDouble() * slots.size());
     }
 
     /**
-     * Returns the coins that the player requests to see
+     * Returns the coins that the player requests to see.
+     * @param requestPattern The pattern of coins the player wants to see
+     * @return revealedString The pattern with requested coins revealed
      */
-    public String getRevealedCoins(String requestPattern) {
+    public String getRevealedCoins(final String requestPattern) {
         String revealedString = "";
-        for (int i = 0; i < _slots.size(); i++) {
+        for (int i = 0; i < slots.size(); i++) {
             if (requestPattern.charAt(i) == '?') {
-                revealedString += _slots.get((i + _startPosition) % _slots.size()).getCoinState().getAbbreviation();
+                revealedString += slots.get((i + startPosition) % slots.size())
+                        .getCoinState().getAbbreviation();
             } else {
                 revealedString += '-';
             }
@@ -86,17 +96,20 @@ public class Wheel {
     }
 
     /**
-     * Changes the coins to the pattern that the player requests them to be
+     * Changes the coins to the pattern that the player requests them to be.
+     * @param newCoinStates The pattern with player's changes to revealed coins
      */
-    public void setNewCoinStates(String newCoinStates) {
-        for (int i = 0; i < _slots.size(); i++) {
+    public void setNewCoinStates(final String newCoinStates) {
+        for (int i = 0; i < slots.size(); i++) {
             if (newCoinStates.charAt(i) == '-') {
                 continue;
             } else {
-                if (newCoinStates.charAt(i) == _slots.get((i + _startPosition) % _slots.size()).getCoinState().getAbbreviation().charAt(0)) {
+                if (newCoinStates.charAt(i) == slots.get(
+                        (i + startPosition) % slots.size())
+                        .getCoinState().getAbbreviation().charAt(0)) {
                     continue;
                 } else {
-                    _slots.get((i + _startPosition) % _slots.size()).flipCoin();
+                    slots.get((i + startPosition) % slots.size()).flipCoin();
                 }
             }
         }
