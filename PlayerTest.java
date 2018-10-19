@@ -63,7 +63,7 @@ public class PlayerTest {
             int spinCount = 0;
             boolean victorious = false;
 
-            while(!victorious) {
+            while (!victorious) {
                 wheel.spin();
                 spinCount++;
                 //a single play
@@ -78,7 +78,7 @@ public class PlayerTest {
                 }
             }
         }
-        double ratioOfWinsToGames = (double)gamesWonAfterMaxSpins/(double)numberOfTestGames;
+        double ratioOfWinsToGames = (double) gamesWonAfterMaxSpins / (double) numberOfTestGames;
         assertTrue(ratioOfWinsToGames > 0.99);
     }
 

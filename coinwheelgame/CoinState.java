@@ -1,9 +1,9 @@
 package coinwheelgame;
 
 /**
- * Represents possible states of coins in the game
+ * Represents possible states of coins in the game.
  *
- * @author Jon Bowen, James Niedfeldt, Evan Ballinger, Doug McLaughlin, Levi Portenier
+ * @author Team Obelisk
  * @version 0.0.1
  */
 public enum CoinState {

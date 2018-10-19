@@ -3,44 +3,51 @@ package coinwheelgame;
 import java.util.Random;
 
 /**
- * A Coin object contains reference to a CoinState enum, which has a value of HEADS or TAILS
+ * A Coin object contains reference to a CoinState enum, which has a
+ * value of HEADS or TAILS.
  *
- * @author Jon Bowen, James Niedfeldt, Evan Ballinger, Doug McLaughlin, Levi Portenier
+ * @author Team Obelisk
  * @version 0.0.1
  */
 public class Coin {
 
+    /**
+     * Enumeration that represents the state of the coin (heads or tails).
+     */
     private CoinState state;
 
     /**
-     * Constructor for a coin object using a given CoinState object
-     * @param state
+     * Constructor for a coin object using a given CoinState object.
+     * @param initialState The initial state of the coin.
      */
-    public Coin(CoinState state){
-        this.state = state;
+    public Coin(final CoinState initialState) {
+        this.state = initialState;
     }
 
     /**
-     * Default constructor creates a coin object with a randomly generated CoinState
-     * */
+     * Default constructor creates a coin object with a randomly
+     * generated CoinState.
+     */
     public Coin() {
         this.state = CoinState.findByState(new Random().nextBoolean());
     }
 
     /**
      * @return current value of CoinState
-     * */
+     */
     public CoinState getState() {
         return state;
     }
 
     /**
-     * Toggles the value of internal CoinState*/
+     * Toggles the value of internal CoinState.
+     */
     public void flip() {
 
-        if (state == CoinState.HEADS)
+        if (state == CoinState.HEADS) {
             state = CoinState.TAILS;
-        else
+        } else {
             state = CoinState.HEADS;
+        }
     }
 }
