@@ -12,5 +12,5 @@ cd strategic-player
 ~~~
 build the project
 ~~~
-ant build
+ant
 ~~~
