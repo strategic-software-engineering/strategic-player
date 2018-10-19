@@ -8,15 +8,15 @@ public class Main {
     /**
      *
      */
-    private final int coins = 10;
+    private static final int coins = 10;
     /**
      *
      */
-    private final int reveal = 5;
+    private static final int reveal = 5;
     /**
      *
      */
-    private final int spin = 10;
+    private static final int spin = 10;
     /**
      * Main method used for testing.
      * @param args arguments

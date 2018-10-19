@@ -2,7 +2,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import coinwheelgame.*;
+import coinwheelgame.Wheel;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -78,7 +78,6 @@ public class PlayerTest {
         double ratioOfWinsToGames = (double)gamesWonAfterMaxSpins/(double)numberOfTestGames;
         assertTrue(ratioOfWinsToGames > 0.99);
     }
-}
 
     @Test
     public void getNewCoinStatesFourTwoFirstTest() {
