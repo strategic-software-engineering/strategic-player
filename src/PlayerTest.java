@@ -78,7 +78,6 @@ public class PlayerTest {
         double ratioOfWinsToGames = (double)gamesWonAfterMaxSpins/(double)numberOfTestGames;
         assertTrue(ratioOfWinsToGames > 0.99);
     }
-}
 
     @Test
     public void getNewCoinStatesFourTwoFirstTest() {
