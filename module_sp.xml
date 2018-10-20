@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_sp" default="compile.module.sp">
+  <dirname property="module.sp.basedir" file="${ant.file.module_sp}"/>
+  
+  <property name="module.jdk.home.sp" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.sp" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.sp" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.sp" value="-encoding UTF-8 -source 10 -target 10 ${compiler.args}"/>
+  
+  <property name="sp.output.dir" value="${module.sp.basedir}/out/production/SP"/>
+  <property name="sp.testoutput.dir" value="${module.sp.basedir}/out/test/SP"/>
+  
+  <path id="sp.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="sp.module.production.classpath">
+    <path refid="${module.jdk.classpath.sp}"/>
+    <pathelement location="${path.variable.maven_repository}/junit/junit/4.12/junit-4.12.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+  </path>
+  
+  <path id="sp.runtime.production.module.classpath">
+    <pathelement location="${sp.output.dir}"/>
+    <pathelement location="${path.variable.maven_repository}/junit/junit/4.12/junit-4.12.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+  </path>
+  
+  <path id="sp.module.classpath">
+    <path refid="${module.jdk.classpath.sp}"/>
+    <pathelement location="${sp.output.dir}"/>
+    <pathelement location="${path.variable.maven_repository}/junit/junit/4.12/junit-4.12.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+  </path>
+  
+  <path id="sp.runtime.module.classpath">
+    <pathelement location="${sp.testoutput.dir}"/>
+    <pathelement location="${sp.output.dir}"/>
+    <pathelement location="${path.variable.maven_repository}/junit/junit/4.12/junit-4.12.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.sp">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.sp">
+    <patternset refid="excluded.from.module.sp"/>
+  </patternset>
+  
+  <path id="sp.module.sourcepath">
+    <dirset dir="${module.sp.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.sp" depends="compile.module.sp.production,compile.module.sp.tests" description="Compile module SP"/>
+  
+  <target name="compile.module.sp.production" depends="register.custom.compilers" description="Compile module SP; production classes">
+    <mkdir dir="${sp.output.dir}"/>
+    <javac2 destdir="${sp.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.sp}/javac">
+      <compilerarg line="${compiler.args.sp}"/>
+      <bootclasspath refid="sp.module.bootclasspath"/>
+      <classpath refid="sp.module.production.classpath"/>
+      <src refid="sp.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.sp"/>
+    </javac2>
+    
+    <copy todir="${sp.output.dir}">
+      <fileset dir="${module.sp.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.sp.tests" depends="register.custom.compilers,compile.module.sp.production" description="compile module SP; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.sp" description="cleanup module">
+    <delete dir="${sp.output.dir}"/>
+    <delete dir="${sp.testoutput.dir}"/>
+  </target>
+</project>
