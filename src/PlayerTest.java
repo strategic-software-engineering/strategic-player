@@ -43,14 +43,15 @@ public class PlayerTest {
     //Test the strategy for the 4 coin, 2 reveal game by running many games and collecting data
     //Should solve over 99% of games in less than 9 spins (as per user story)
     @Test
-    public void fourCoinTwoRevealStrategyTest() {
-        int numberOfTestGames = 1000; //change this if you want to run more or less games for this test
-        int maxSpinsForTest = 9;
+    public  void fourCoinTwoRevealStrategyTest() {
+        int numberOfTestGames = 10000; //change this if you want to run more or less games for this test
+        int maxSpinsForTest = 4;
         int gamesWonAfterMaxSpins = 0;
+        int gamesLost = 0;
 
         for (int i = 0; i < numberOfTestGames; i++) {
             Player player = new Player();
-            player.beginGame(4, 2, 9);
+            player.beginGame(4, 2, 5);
 
             Wheel wheel = new Wheel(4);
 
@@ -67,27 +68,26 @@ public class PlayerTest {
             String temp3 = "";
 
             while (!victorious) {
-                wheel.spin();
-                spinCount++;
                 //a single play
                 temp = player.getSlotsToReveal().toString();
-                temp2 = wheel.getRevealedCoins(temp).toString();
+                temp2 = wheel.getRevealedCoins(temp);
                 temp3 = player.getNewCoinStates(temp2).toString();
                 wheel.setNewCoinStates(temp3);
-
                 //check to see if the player won
                 if (wheel.wheelInfoAsString().equals("HHHH") || wheel.wheelInfoAsString().equals("TTTT")) {
                     victorious = true;
                     if (spinCount <= maxSpinsForTest) {
                         gamesWonAfterMaxSpins++;
+                    } else {
+                        gamesLost++;
                     }
                 }
+                wheel.spin();
+                spinCount++;
             }
         }
-        double ratioOfWinsToGames = (double) gamesWonAfterMaxSpins / (double) numberOfTestGames;
-        assertTrue(ratioOfWinsToGames > 0.99);
+        assertTrue(gamesLost < 1);
     }
-
     @Test
     public void getNewCoinStatesFourTwoFirstTest() {
         Player player = new Player();

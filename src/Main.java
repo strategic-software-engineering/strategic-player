@@ -8,32 +8,11 @@ import coinwheelgame.Wheel;
  */
 public class Main {
     public static void main (String[]args){
-        /*int coinsPerWheel = 4;
-        int revealsPerSpin = 2;
-        int maxNumSpins = 10;
-
-        Player p = new Player();
-        p.beginGame(coinsPerWheel,revealsPerSpin,maxNumSpins);
-        System.out.println(p.getSlotsToReveal());
-        System.out.println(p.getNewCoinStates("TH--"));
-
-        System.out.println(p.getSlotsToReveal());
-        System.out.println(p.getNewCoinStates("H-H-"));
-
-        System.out.println(p.getSlotsToReveal());
-        System.out.println(p.getNewCoinStates("H-H-"));
-
-        System.out.println(p.getSlotsToReveal());
-        System.out.println(p.getNewCoinStates("TH--"));
-
-        System.out.println(p.getSlotsToReveal());
-        System.out.println(p.getNewCoinStates("H-H-"));
-        */
-        fourCoinTwoRevealStrategyTest();
-   }
+       fourCoinTwoRevealStrategyTest();
+    }
 
     public static void fourCoinTwoRevealStrategyTest() {
-        int numberOfTestGames = 10000; //change this if you want to run more or less games for this test
+        int numberOfTestGames = 100000; //change this if you want to run more or less games for this test
         int maxSpinsForTest = 4;
         int gamesWonAfterMaxSpins = 0;
         int gamesLost = 0;
@@ -81,7 +60,5 @@ public class Main {
             }
         }
         System.out.println("Won: "+gamesWonAfterMaxSpins + "\nLost: "+gamesLost );
-        double ratioOfWinsToGames = (double) gamesWonAfterMaxSpins / (double) numberOfTestGames;
-        //assertTrue(ratioOfWinsToGames > 0.99);
     }
 }

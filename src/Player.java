@@ -139,10 +139,8 @@ public class Player implements StrategicPlayer {
                 break;
             case 3:
                 if (stringBuilder.toString().equals("H-H-")) {
-                    System.out.println("got in 1st");
                     reverseDifferentElement(stringBuilder, 2, 3 );
                 } else {
-                    System.out.println("got in 2nd");
                     loopThroughElements("H", 'T', strategicCoinValue,
                             stringBuilder);
                 }
@@ -206,11 +204,9 @@ public class Player implements StrategicPlayer {
                                                  final int firstIndex,
                                                  final int secondIndex){
         if (stringBuilder.charAt(0) == 'H'){
-            System.out.println("changing 1st");
             stringBuilder.replace(0,1, "T");
             stringBuilder.replace(firstIndex, secondIndex, "H");
         } else {
-            System.out.println("changing 2nd");
             stringBuilder.replace(0,1, "H");
             stringBuilder.replace(firstIndex, secondIndex, "T");
         }
