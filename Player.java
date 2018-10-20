@@ -1,29 +1,5 @@
 /**
  * A player of the Spin-the-Wheel Coin Matching Game.
- *<br><br>
- * Strategy for a 4 coin, 2 reveal game: <br>
- * The player will first request that two adjacent coins are revealed,
- * which will be "??--". If these two coins are the same, getNewCoinStates
- * will flip both of them. Since the game cannot begin with a winning
- * spin, this gives us an immediate 1/3 chance of victory if the two
- * hidden coins are the same. If they are not the same, it ensures that
- * at least 3 of the coins now match.<br>
- * If the coins are not the same, getNewCoinStates will flip one so that
- * the pattern is "HH". This ensures that at least 2 coins match in the
- * worst case scenario, and has a 1/4 chance of victory.<br>
- * For the second move, the player will request that two opposite coins
- * are revealed in the pattern "?-?-". This ensures, in the worst case
- * scenario, that three coins match, and has a 1/2 chance of victory.
- * For all subsequent moves, the same "?-?-" pattern will be requested,
- * which gives each of these moves a 1/2 chance of victory. <br>
- * The probability for success for this strategy in the event that the
- * first two coins match is: P=1/3 for the first move, and P=1-(1/2)^n,
- * where n equals the number of moves after the first one, for all
- * subsequent moves. The probability of winning in 9 moves is 99.6%<br>
- * The probability for success for this strategy when the first two
- * coins do not match is: P=1/4 for the first move, and P=1-(1/2)^n,
- * where n equals the number of moves after the first one, for all
- * subsequent moves. The probability of winning in 9 moves is 99.2%<br>
  *
  * @author CS4250 Fall 2018
  * @version 1.2.2 (20181004)
@@ -42,25 +18,17 @@ public class Player implements StrategicPlayer {
      */
     private int maxNumSpins;
     /**
-     * indicates if it is the first time getSlotsToReaveal() method is used.
-     */
-    private boolean newGameGetSlotsToReveal = false;
-    /**
-     * indicates if it is the first time getNewCoinStates() method is used.
-     */
-    private boolean newGameGetNewCoinStates = false;
-    /**
-     * hold the value of the target side for the win, H or T.
-     */
-    private char winSide = 'R';
-    /**
      * holds a coin number for the four coins two reaveal strategy.
      */
     private final int strategicCoinValue = 4;
     /**
-     * holds a number of reveals for the four coins two reaveal strategy.
+     * holds a number of reveals for the four coins two reveal strategy.
      */
     private final int strategicRevealValue = 2;
+    /**
+     * keeps track of a current turn.
+     */
+    private int turn;
 
     /**
      * Establishes that the player is beginning a new game.
@@ -74,8 +42,7 @@ public class Player implements StrategicPlayer {
         this.coinsPerWheel = coinsPerWheelParam;
         this.revealsPerSpin = revealsPerSpinParam;
         this.maxNumSpins = maxNumSpinsParam;
-        newGameGetSlotsToReveal = true;
-        newGameGetNewCoinStates = true;
+        turn = 1;
     }
 
     /**
@@ -93,12 +60,7 @@ public class Player implements StrategicPlayer {
         // four coins two reveals strategy
         if (coinsPerWheel == strategicCoinValue && revealsPerSpin
                 == strategicRevealValue) {
-            if (newGameGetSlotsToReveal) {
-                stringBuilder.append("??--");
-                newGameGetSlotsToReveal = false;
-            } else {
-                stringBuilder.append("?-?-");
-            }
+            fourTwoStrategyReqPattern(stringBuilder, turn);
         } else { // any other game strategy
             for (int i = 0; i < coinsPerWheel; i++) {
                 if (count > 0) {
@@ -127,21 +89,7 @@ public class Player implements StrategicPlayer {
         stringBuilder.append(revealedPattern);
         if (coinsPerWheel == strategicCoinValue && revealsPerSpin
                 == strategicRevealValue) {
-            if (newGameGetNewCoinStates && revealedPattern == "HH--") {
-                loopThroughElements("T", 'H', coinsPerWheel, stringBuilder);
-                newGameGetNewCoinStates = false;
-                winSide = 'T';
-            } else if (newGameGetNewCoinStates && revealedPattern == "TT--") {
-                loopThroughElements("H", 'T', coinsPerWheel, stringBuilder);
-                newGameGetNewCoinStates = false;
-                winSide = 'H';
-            } else {
-                if (winSide == 'T') {
-                    loopThroughElements("T", 'H', coinsPerWheel, stringBuilder);
-                } else {
-                    loopThroughElements("H", 'T', coinsPerWheel, stringBuilder);
-                }
-            }
+            fourTwoStrategy(stringBuilder, turn);
         } else { // any other game strategy
             loopThroughElements("H", 'T', revealedPattern.length(),
                     stringBuilder);
@@ -159,18 +107,130 @@ public class Player implements StrategicPlayer {
      * @param sideHave character that specifies if it is 'H' or 'T'
      * @param lengthOfTheSequence specifies the proper length of a sequence
      * @param stringBuilder builds up the string
-     * @return a proper set-pattern consisting of '-', 'H', and 'T'
      */
-    private CharSequence loopThroughElements(final String sideWanted,
-                                             final char sideHave,
-                                             final int lengthOfTheSequence,
-                                             final StringBuilder
-                                                     stringBuilder) {
+    private void loopThroughElements(final String sideWanted,
+                                     final char sideHave,
+                                     final int lengthOfTheSequence,
+                                     final StringBuilder
+                                             stringBuilder) {
         for (int i = 0; i < lengthOfTheSequence; i++) {
             if (stringBuilder.charAt(i) == sideHave) {
                 stringBuilder.replace(i, (i + 1), sideWanted);
             }
         }
-        return stringBuilder.toString();
+    }
+
+    /**
+     * Four coin Two reveal strategy that is used in getNewCoinStates() method.
+     * It changes the sides of the coins that have been provided to follow a
+     * specific strategy.
+     * @param stringBuilder holds the sequence.
+     * @param turnCounter specifies which turn it currently is.
+     * */
+    private void fourTwoStrategy(final StringBuilder stringBuilder,
+                                 final int turnCounter) {
+        switch (turnCounter) {
+            case 1:
+                loopThroughElements("H", 'T', strategicCoinValue,
+                        stringBuilder);
+                turn++;
+                break;
+            case 2:
+                loopThroughElements("H", 'T', strategicCoinValue,
+                        stringBuilder);
+                turn++;
+                break;
+            case 3:
+                if (stringBuilder.toString().equals("H-H-")) {
+                    reverseDifferentElement(stringBuilder, 2, 3);
+                } else {
+                    loopThroughElements("H", 'T', strategicCoinValue,
+                            stringBuilder);
+                }
+                turn++;
+                break;
+            case 4:
+                if (stringBuilder.toString().equals("HT--")) {
+                    reverseDifferentElement(stringBuilder, 1, 2);
+                } else if (stringBuilder.toString().equals("TH--")) {
+                    reverseDifferentElement(stringBuilder, 1, 2);
+                } else {
+                    reverseSameElements(stringBuilder);
+                }
+                turn++;
+                break;
+            case 5:
+                reverseSameElements(stringBuilder);
+                turn = 1;
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Provides the specific pattern for a particular turn.
+     * @param stringBuilder holds the sequence.
+     * @param turnCounter specifies which turn it currently is.
+     */
+    private void fourTwoStrategyReqPattern(final StringBuilder stringBuilder,
+                                           final int turnCounter) {
+        switch (turnCounter) {
+            case 1:
+                stringBuilder.append("??--");
+                break;
+            case 2:
+                stringBuilder.append("?-?-");
+                break;
+            case 3:
+                stringBuilder.append("?-?-");
+                break;
+            case 4:
+                stringBuilder.append("??--");
+                break;
+            case 5:
+                stringBuilder.append("?-?-");
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Changes the sides of both coins to the opposite side when
+     * they are different.
+     * @param stringBuilder holds the sequence
+     * @param firstIndex first index that is used to help choose
+     *                   which is location of the second character
+     *                   that needs to be changed.
+     * @param secondIndex second index that is used to help choose
+     *                    which is location of the second character
+     *                    that needs to be changed.
+     */
+    private void reverseDifferentElement(final StringBuilder stringBuilder,
+                                         final int firstIndex,
+                                         final int secondIndex) {
+        if (stringBuilder.charAt(0) == 'H') {
+            stringBuilder.replace(0, 1, "T");
+            stringBuilder.replace(firstIndex, secondIndex, "H");
+        } else {
+            stringBuilder.replace(0, 1, "H");
+            stringBuilder.replace(firstIndex, secondIndex, "T");
+        }
+    }
+
+    /**
+     * Changes the sides of both coins to the opposite side when
+     * they are the same.
+     * @param stringBuilder holds the sequence.
+     */
+    private void reverseSameElements(final StringBuilder stringBuilder) {
+        if (stringBuilder.charAt(0) == 'H') {
+            loopThroughElements("T", 'H', strategicCoinValue,
+                    stringBuilder);
+        } else {
+            loopThroughElements("H", 'T', strategicCoinValue,
+                    stringBuilder);
+        }
     }
 }
