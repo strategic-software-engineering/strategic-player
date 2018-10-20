@@ -138,7 +138,7 @@ public class Player implements StrategicPlayer {
                 turn++;
                 break;
             case 3:
-                if (stringBuilder.toString() == "H-H-") {
+                if (stringBuilder.toString().equals("H-H-")) {
                     System.out.println("got in 1st");
                     reverseDifferentElement(stringBuilder, 2, 3 );
                 } else {
@@ -149,9 +149,9 @@ public class Player implements StrategicPlayer {
                 turn++;
                 break;
             case 4:
-                if (stringBuilder.toString() == "HT--") {
+                if (stringBuilder.toString().equals("HT--")) {
                     reverseDifferentElement(stringBuilder, 1, 2 );
-                } else if (stringBuilder.toString() == "TH--") {
+                } else if (stringBuilder.toString().equals("TH--")) {
                     reverseDifferentElement(stringBuilder, 1, 2 );
                 } else {
                     reverseSameElements(stringBuilder);

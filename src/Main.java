@@ -33,14 +33,14 @@ public class Main {
    }
 
     public static void fourCoinTwoRevealStrategyTest() {
-        int numberOfTestGames = 100; //change this if you want to run more or less games for this test
-        int maxSpinsForTest = 9;
+        int numberOfTestGames = 10000; //change this if you want to run more or less games for this test
+        int maxSpinsForTest = 4;
         int gamesWonAfterMaxSpins = 0;
         int gamesLost = 0;
 
         for (int i = 0; i < numberOfTestGames; i++) {
             Player player = new Player();
-            player.beginGame(4, 2, 9);
+            player.beginGame(4, 2, 3);
 
             Wheel wheel = new Wheel(4);
 
@@ -60,14 +60,12 @@ public class Main {
                 //a single play
                 temp = player.getSlotsToReveal().toString();
                 System.out.println(temp);
-                temp2 = wheel.getRevealedCoins(temp).toString();
+                temp2 = wheel.getRevealedCoins(temp);
                 System.out.println(temp2);
                 temp3 = player.getNewCoinStates(temp2).toString();
                 System.out.println(temp3);
                 System.out.println();
                 wheel.setNewCoinStates(temp3);
-                wheel.spin();
-                spinCount++;
                 //check to see if the player won
                 if (wheel.wheelInfoAsString().equals("HHHH") || wheel.wheelInfoAsString().equals("TTTT")) {
                     victorious = true;
@@ -78,6 +76,8 @@ public class Main {
                         System.out.println("LOST LOST LOST");
                     }
                 }
+                wheel.spin();
+                spinCount++;
             }
         }
         System.out.println("Won: "+gamesWonAfterMaxSpins + "\nLost: "+gamesLost );
