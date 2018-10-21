@@ -19,11 +19,11 @@
  *  getSlotsToReveal() is called and it returns a pattern "??--".
  *  getNewCoinStates(revealedPatter) is called and it returns
  *  the flipped version of what revealedPattern is (example:
- *  "HT--" >>> "TH--").
+ *  "HT--" becomes "TH--").
  * 5th step:
  *  getSlotsToReveal() is called and it returns a pattern "?-?-".
  *  getNewCoinStates(revealedPattern) is called and it returns
- *  the flipped version of revealedPattern (example: "H-H-" >>>
+ *  the flipped version of revealedPattern (example: "H-H-" becomes
  *  "T-T-". And it is a guaranteed win after this step.
  *
  * @author CS4250 Fall 2018
@@ -54,7 +54,30 @@ public class Player implements StrategicPlayer {
      * keeps track of a current turn.
      */
     private int turn;
-
+    /**
+     * turn One.
+     */
+    private final int turnOne = 1;
+    /**
+     * turn Two.
+     */
+    private final int turnTwo = 2;
+    /**
+     * turn Three.
+     */
+    private final int turnThree = 3;
+    /**
+     * turn Four.
+     */
+    private final int turnFour = 4;
+    /**
+     * turn Five.
+     */
+    private final int turnFive = 5;
+    /**
+     * number three.
+     */
+    private final int three = 3;
     /**
      * Establishes that the player is beginning a new game.
      * @param coinsPerWheelParam the number of coins in the wheel
@@ -155,26 +178,26 @@ public class Player implements StrategicPlayer {
     private void fourTwoStrategy(final StringBuilder stringBuilder,
                                  final int turnCounter) {
         switch (turnCounter) {
-            case 1:
+            case turnOne:
                 loopThroughElements("H", 'T', strategicCoinValue,
                         stringBuilder);
-                turn++;
+                turn = turnTwo;
                 break;
-            case 2:
+            case turnTwo:
                 loopThroughElements("H", 'T', strategicCoinValue,
                         stringBuilder);
-                turn++;
+                turn = turnThree;
                 break;
-            case 3:
+            case turnThree:
                 if (stringBuilder.toString().equals("H-H-")) {
-                    reverseDifferentElement(stringBuilder, 2, 3);
+                    reverseDifferentElement(stringBuilder, 2, three);
                 } else {
                     loopThroughElements("H", 'T', strategicCoinValue,
                             stringBuilder);
                 }
-                turn++;
+                turn = turnFour;
                 break;
-            case 4:
+            case turnFour:
                 if (stringBuilder.toString().equals("HT--")) {
                     reverseDifferentElement(stringBuilder, 1, 2);
                 } else if (stringBuilder.toString().equals("TH--")) {
@@ -182,11 +205,11 @@ public class Player implements StrategicPlayer {
                 } else {
                     reverseSameElements(stringBuilder);
                 }
-                turn++;
+                turn = turnFive;
                 break;
-            case 5:
+            case turnFive:
                 reverseSameElements(stringBuilder);
-                turn = 1;
+                turn = turnOne;
                 break;
             default:
                 break;
@@ -201,19 +224,19 @@ public class Player implements StrategicPlayer {
     private void fourTwoStrategyReqPattern(final StringBuilder stringBuilder,
                                            final int turnCounter) {
         switch (turnCounter) {
-            case 1:
+            case turnOne:
                 stringBuilder.append("??--");
                 break;
-            case 2:
+            case turnTwo:
                 stringBuilder.append("?-?-");
                 break;
-            case 3:
+            case turnThree:
                 stringBuilder.append("?-?-");
                 break;
-            case 4:
+            case turnFour:
                 stringBuilder.append("??--");
                 break;
-            case 5:
+            case turnFive:
                 stringBuilder.append("?-?-");
                 break;
             default:
