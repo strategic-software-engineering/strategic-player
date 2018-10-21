@@ -18,21 +18,21 @@ MIT License
 * As a client, I want the beginGame method to not accept invalid values when it is called, so that the game is legitimate and playable.<br />
   <I>Acceptance Criteria:</I><br />
   When invalid values are passed to beginGame method, the game ends and throws an exception.
-  
-**Completed User Stories for the third delivery** <br />
+
+**Completed User Stories for the fourth delivery** <br />
 * As a tester, I want to have a good quality code so that the client have a better product. <br />
   <I>Acceptance Criteria:</I><br />
   Getting no errors after running the checkstyle.
 
-* As a client, I want the Player class to adopt a good strategy for a 4 coin 2 reveal game so that the player has a high probability of winning.<br />
+* As a client, I want the Player class to adopt an optimal strategy for a 4 coin 2 reveal game so that the game can be finished in the smallest number of spins.<br />
   <I>Acceptance Criteria:</I><br />
-  When I play a 4 coin 2 reveal game, it will have a 99%+ probability of winning after 9 spins.
+  When I play a 4 coin 2 reveal game, it will be solved in the fewest number of spins possible.
 
 * As a client, I want statistical information for how likely the optimal strategy is to win, so that I know how effective the strategy is.<br />
   <I>Acceptance Criteria:</I><br />
   There is statistical information about the game in the JavaDoc for the Player class.
 
-**Completed User Stories for the second delivery** <br />
+**Completed User Stories but obsolete because of the strategy change** <br />
 * As a developer, in the event that the pattern indicates that the first pair of revealed coins matches, in a 4 coin, 2 reveal game, I want the the getNewCoinStates method to flip both revealed coins to the opposite side, so that we have a 1 out of 3 chance of winning the game in the first round.<br />
   <I>Acceptance Criteria:</I><br />
   The getNewCoinStates method flips both coins if they match on the first reveal.
