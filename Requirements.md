@@ -30,7 +30,7 @@ MIT License
 
 * As a client, I want statistical information for how likely the optimal strategy is to win, so that I know how effective the strategy is.<br />
   <I>Acceptance Criteria:</I><br />
-  There is statistical information about the game in the JavaDoc for the Player class.
+  There is statistical information about the game in separate file.
 
 **Completed User Stories but obsolete because of the strategy change** <br />
 * As a developer, in the event that the pattern indicates that the first pair of revealed coins matches, in a 4 coin, 2 reveal game, I want the the getNewCoinStates method to flip both revealed coins to the opposite side, so that we have a 1 out of 3 chance of winning the game in the first round.<br />
