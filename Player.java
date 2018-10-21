@@ -1,5 +1,30 @@
 /**
  * A player of the Spin-the-Wheel Coin Matching Game.
+ * <br><br>
+ * Strategy for a 4 coin, 2 reveal game: <br>
+ * 1st turn:
+ *  getSlotsToReveal() is called and it returns a pattern "??--".
+ *  getNewCoinStates(revealedPattern) is called then and it
+ *  returns "HH--".
+ * 2nd step:
+ *  getSlotsToReveal() is called and it returns a pattern "?-?-".
+ *  getNewCoinStates(revealedPattern) is called next and it
+ *  returns "H-H-".
+ * 3rd step:
+ *  getSlotsToReveal() is called and it returns a pattern "?-?-"
+ *  again.
+ *  getNewCoinStates(revealedPattern) is called next and it
+ *  returns "T-H-".
+ * 4th step:
+ *  getSlotsToReveal() is called and it returns a pattern "??--".
+ *  getNewCoinStates(revealedPatter) is called and it returns
+ *  the flipped version of what revealedPattern is (example:
+ *  "HT--" >>> "TH--").
+ * 5th step:
+ *  getSlotsToReveal() is called and it returns a pattern "?-?-".
+ *  getNewCoinStates(revealedPattern) is called and it returns
+ *  the flipped version of revealedPattern (example: "H-H-" >>>
+ *  "T-T-". And it is a guaranteed win after this step.
  *
  * @author CS4250 Fall 2018
  * @version 1.2.2 (20181004)
