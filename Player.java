@@ -34,50 +34,62 @@ public class Player implements StrategicPlayer {
      * holds a value of the number of coins in the current game.
      */
     private int coinsPerWheel;
+
     /**
      * holds a value of the number of reveals allowed in the current game.
      */
     private int revealsPerSpin;
+
     /**
      * holds a value of the maximum number of spins allowed in the current game.
      */
     private int maxNumSpins;
+
     /**
      * holds a coin number for the four coins two reaveal strategy.
      */
     private final int strategicCoinValue = 4;
+
     /**
      * holds a number of reveals for the four coins two reveal strategy.
      */
     private final int strategicRevealValue = 2;
+
     /**
      * keeps track of a current turn.
      */
     private int turn;
+
     /**
-     * turn One.
+     * turn One for switch statements.
      */
     private final int turnOne = 1;
+
     /**
-     * turn Two.
+     * turn Two for switch statements.
      */
     private final int turnTwo = 2;
+
     /**
-     * turn Three.
+     * turn Three for switch statements.
      */
     private final int turnThree = 3;
+
     /**
-     * turn Four.
+     * turn Four for switch statements.
      */
     private final int turnFour = 4;
+
     /**
-     * turn Five.
+     * turn Five for switch statements.
      */
     private final int turnFive = 5;
+
     /**
      * number three.
      */
     private final int three = 3;
+
     /**
      * Establishes that the player is beginning a new game.
      * @param coinsPerWheelParam the number of coins in the wheel
@@ -87,10 +99,16 @@ public class Player implements StrategicPlayer {
     public void beginGame(final int coinsPerWheelParam,
                           final int revealsPerSpinParam,
                           final int maxNumSpinsParam) {
-        this.coinsPerWheel = coinsPerWheelParam;
-        this.revealsPerSpin = revealsPerSpinParam;
-        this.maxNumSpins = maxNumSpinsParam;
-        turn = 1;
+        if ((coinsPerWheelParam > 1) && (revealsPerSpinParam > 0)
+                && (maxNumSpinsParam > -1) && (coinsPerWheelParam
+                >= revealsPerSpinParam)) {
+            this.coinsPerWheel = coinsPerWheelParam;
+            this.revealsPerSpin = revealsPerSpinParam;
+            this.maxNumSpins = maxNumSpinsParam;
+            turn = 1;
+        } else {
+            throw new RuntimeException("Invalid inputs");
+        }
     }
 
     /**
@@ -106,8 +124,8 @@ public class Player implements StrategicPlayer {
         StringBuilder stringBuilder = new StringBuilder();
 
         // four coins two reveals strategy
-        if (coinsPerWheel == strategicCoinValue && revealsPerSpin
-                == strategicRevealValue) {
+        if ((coinsPerWheel == strategicCoinValue) && (revealsPerSpin
+                == strategicRevealValue)) {
             fourTwoStrategyReqPattern(stringBuilder, turn);
         } else { // any other game strategy
             for (int i = 0; i < coinsPerWheel; i++) {
