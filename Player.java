@@ -124,8 +124,8 @@ public class Player implements StrategicPlayer {
         StringBuilder stringBuilder = new StringBuilder();
 
         // four coins two reveals strategy
-        if (coinsPerWheel == strategicCoinValue && revealsPerSpin
-                == strategicRevealValue) {
+        if ((coinsPerWheel == strategicCoinValue) && (revealsPerSpin
+                == strategicRevealValue)) {
             fourTwoStrategyReqPattern(stringBuilder, turn);
         } else { // any other game strategy
             for (int i = 0; i < coinsPerWheel; i++) {
