@@ -47,14 +47,15 @@ public class PlayerTest {
     public  void fourCoinTwoRevealStrategyTest() {
         int numberOfTestGames = 10000; //change this if you want to run more or less games for this test
         int maxSpinsForTest = 4;
+        int numCoins = 4;
         int gamesWonAfterMaxSpins = 0;
         int gamesLost = 0;
 
         for (int i = 0; i < numberOfTestGames; i++) {
             Player player = new Player();
-            player.beginGame(4, 2, 5);
+            player.beginGame(numCoins, 2, maxSpinsForTest);
 
-            Wheel wheel = new Wheel(4);
+            Wheel wheel = new Wheel(numCoins);
 
             //Assuming the game will not deal the player a winning set of coins, throw out any winning patterns right away
             if (wheel.wheelInfoAsString().equals("HHHH") || wheel.wheelInfoAsString().equals("TTTT")) {
@@ -96,12 +97,13 @@ public class PlayerTest {
         CharSequence[] allCombinations = {"TTTH", "TTHT", "TTHH", "THTT", "THTH", "THHT", "THHH",
                 "HTTT", "HTTH", "HTHT", "HTHH", "HHTT", "HHTH", "HHHT"};
         int gamesLost = 0;
+        int numCoins = 4;
 
         for (int i = 0; i < allCombinations.length; i++) {
             Player player = new Player();
-            player.beginGame(4, 2, 5);
+            player.beginGame(numCoins, 2, 5);
 
-            Wheel wheel = new Wheel(4, allCombinations[i].toString());
+            Wheel wheel = new Wheel(numCoins, allCombinations[i].toString());
             int spinCount = 0;
             int maxSpinsForTest = 5;
             boolean victorious = false;
