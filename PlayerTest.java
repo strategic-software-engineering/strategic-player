@@ -88,6 +88,46 @@ public class PlayerTest {
         }
         assertTrue(gamesLost < 1);
     }
+    //Tests all possible combinations (besides the winning ones) for a 4 coin, 2 reveal game
+    @Test
+    public void allPossibleGamesTest() {
+        // all possible non-winning combinations for the wheel
+        CharSequence[] allCombinations = {"TTTH", "TTHT", "TTHH", "THTT", "THTH", "THHT", "THHH",
+                "HTTT", "HTTH", "HTHT", "HTHH", "HHTT", "HHTH", "HHHT"};
+        int gamesLost = 0;
+
+        for (int i = 0; i < allCombinations.length; i++) {
+            Player player = new Player();
+            player.beginGame(4, 2, 5);
+
+            Wheel wheel = new Wheel(4, allCombinations[i].toString());
+            int spinCount = 0;
+            int maxSpinsForTest = 5;
+            boolean victorious = false;
+            String temp = "";
+            String temp2 = "";
+            String temp3 = "";
+
+            while (!victorious) {
+                //a single play
+                temp = player.getSlotsToReveal().toString();
+                temp2 = wheel.getRevealedCoins(temp);
+                temp3 = player.getNewCoinStates(temp2).toString();
+                wheel.setNewCoinStates(temp3);
+                //check to see if the player won
+                if (wheel.wheelInfoAsString().equals("HHHH") || wheel.wheelInfoAsString().equals("TTTT")) {
+                    victorious = true;
+                    if (spinCount > maxSpinsForTest) {
+                        gamesLost++;
+                    }
+                } else { //if not, spin again
+                    wheel.spin();
+                    spinCount++;
+                }
+            }
+        }
+        assertTrue(gamesLost < 1);
+    }
     @Test
     public void getNewCoinStatesFourTwoFirstTest() {
         Player player = new Player();

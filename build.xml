@@ -26,7 +26,7 @@
     </not>
   </condition>
     <!-- identify main class -->
-  <property name="mainclass" value="SpinTheWheelGame"/>
+  <property name="mainclass" value="Main"/>
     <!-- checkstyle properties -->
   <property name="checkstyle.jar" value="${lib}/checkstyle.jar"/>
   <property name="checkstyle.xsl" value="${lib}/checkstyle.xsl"/>

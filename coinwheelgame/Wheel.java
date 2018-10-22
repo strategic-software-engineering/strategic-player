@@ -30,7 +30,7 @@ public class Wheel {
     /**
      * Constructor for wheel.
      *
-     * @param numSlots The number of slots to include in the wheel
+     * @param numSlots The number of slots to include in the wheel,
      */
     public Wheel(final int numSlots) {
         slots = new ArrayList<Slot>(numSlots);
@@ -40,6 +40,28 @@ public class Wheel {
         for (int i = 0; i < numSlots; i++) {
             Slot s = new Slot(new Coin(), false);
             slots.add(s);
+        }
+    }
+
+    /**
+     * Constructor that makes a wheel with a given coin pattern.
+     *
+     * @param numSlots The number of slots to include in the wheel.
+     * @param givenPattern The pattern of coins to put in the wheel.
+     */
+    public Wheel(final int numSlots, final String givenPattern) {
+        slots = new ArrayList<Slot>(numSlots);
+        startPosition = 0;
+
+        // defined initial coin configuration
+        for (int i = 0; i < numSlots; i++) {
+            if (givenPattern.charAt(i) == 'H') {
+                Slot s = new Slot(new Coin(CoinState.HEADS), false);
+                slots.add(s);
+            } else if (givenPattern.charAt(i) == 'T') {
+                Slot s = new Slot(new Coin(CoinState.TAILS), false);
+                slots.add(s);
+            }
         }
     }
 
