@@ -14,16 +14,8 @@ https://github.com/strategic-software-engineering/strategic-player
 **Software License** <br />
 MIT License
 
-**Incomplete User Stories** <br />
-* As a client, I want the beginGame method to not accept invalid values when it is called, so that the game is legitimate and playable.<br />
-  <I>Acceptance Criteria:</I><br />
-  When invalid values are passed to beginGame method, the game ends and throws an exception.
 
 **Completed User Stories for the fourth delivery** <br />
-* As a tester, I want to have a good quality code so that the client have a better product. <br />
-  <I>Acceptance Criteria:</I><br />
-  Getting no errors after running the checkstyle.
-
 * As a client, I want the Player class to adopt an optimal strategy for a 4 coin 2 reveal game so that the game can be finished in the smallest number of spins.<br />
   <I>Acceptance Criteria:</I><br />
   When I play a 4 coin 2 reveal game, it will be solved in the fewest number of spins possible.
@@ -31,6 +23,14 @@ MIT License
 * As a client, I want statistical information for how likely the optimal strategy is to win, so that I know how effective the strategy is.<br />
   <I>Acceptance Criteria:</I><br />
   There is statistical information about the game in separate file.
+
+* As a client, I want the beginGame method to not accept invalid values when it is called, so that the game is legitimate and playable.<br />
+  <I>Acceptance Criteria:</I><br />
+  When invalid values are passed to beginGame method, the game ends and throws an exception.
+
+* As a tester, I want to have a good quality code so that the client have a better product. <br />
+  <I>Acceptance Criteria:</I><br />
+  Getting no errors after running the checkstyle.
 
 **Completed User Stories but obsolete because of the strategy change** <br />
 * As a developer, in the event that the pattern indicates that the first pair of revealed coins matches, in a 4 coin, 2 reveal game, I want the the getNewCoinStates method to flip both revealed coins to the opposite side, so that we have a 1 out of 3 chance of winning the game in the first round.<br />
