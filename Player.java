@@ -17,7 +17,7 @@
  *  returns "T-H-".<br><br>
  * <I>4th step:</I><br>
  *  *getSlotsToReveal() is called and it returns a pattern "??--".<br>
- *  *getNewCoinStates(revealedPatter) is called and it returns
+ *  *getNewCoinStates(revealedPattern) is called and it returns
  *  the flipped version of what revealedPattern is (example:
  *  "HT--" becomes "TH--").<br><br>
  * <I>5th step:</I><br>
