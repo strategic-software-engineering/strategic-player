@@ -37,6 +37,7 @@ public class PlayerTest {
     public void getNewCoinStatesTest() {
         Player player = new Player();
         player.beginGame(6, 3, 10);
+        player.getSlotsToReveal();
         assertEquals(player.getNewCoinStates("TTH---"), "HHH---");
     }
 
@@ -90,7 +91,7 @@ public class PlayerTest {
     }
     //Tests all possible combinations (besides the winning ones) for a 4 coin, 2 reveal game
     @Test
-    public void allPossibleGamesTest() {
+    public void allPossibleFourTwoGamesTest() {
         // all possible non-winning combinations for the wheel
         CharSequence[] allCombinations = {"TTTH", "TTHT", "TTHH", "THTT", "THTH", "THHT", "THHH",
                 "HTTT", "HTTH", "HTHT", "HTHH", "HHTT", "HHTH", "HHHT"};
@@ -154,5 +155,20 @@ public class PlayerTest {
         Player player = new Player();
         player.beginGame(4, 2, 5);
         assertEquals(player.getSlotsToReveal(), "??--");
+    }
+    @Test(expected = RuntimeException.class)
+    public void beginGameInvalidCoinsPerWheelTest() {
+        Player player = new Player();
+        player.beginGame(0, 2, 10);
+    }
+    @Test(expected = RuntimeException.class)
+    public void beginGameInvalidRevealsPerSpinTest() {
+        Player player = new Player();
+        player.beginGame(4, 0, 10);
+    }
+    @Test(expected = RuntimeException.class)
+    public void beginGameInvalidMaxNumSpinsTest() {
+        Player player = new Player();
+        player.beginGame(4, 2, -1);
     }
 }
