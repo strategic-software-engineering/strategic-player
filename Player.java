@@ -1,30 +1,30 @@
 /**
  * A player of the Spin-the-Wheel Coin Matching Game.
  * <br><br>
- * Strategy for a 4 coin, 2 reveal game: <br>
- * 1st turn:
- *  getSlotsToReveal() is called and it returns a pattern "??--".
- *  getNewCoinStates(revealedPattern) is called then and it
- *  returns "HH--".
- * 2nd step:
- *  getSlotsToReveal() is called and it returns a pattern "?-?-".
- *  getNewCoinStates(revealedPattern) is called next and it
- *  returns "H-H-".
- * 3rd step:
- *  getSlotsToReveal() is called and it returns a pattern "?-?-"
+ * <B>Strategy for a 4 coin, 2 reveal game:</B> <br><br>
+ * <I>1st turn:</I><br>
+ *  *getSlotsToReveal() is called and it returns a pattern "??--".<br>
+ *  *getNewCoinStates(revealedPattern) is called then and it
+ *  returns "HH--".<br><br>
+ * <I>2nd step:</I><br>
+ *  *getSlotsToReveal() is called and it returns a pattern "?-?-".<br>
+ *  *getNewCoinStates(revealedPattern) is called next and it
+ *  returns "H-H-".<br><br>
+ * <I>3rd step:</I><br>
+ *  *getSlotsToReveal() is called and it returns a pattern "?-?-"<br>
  *  again.
- *  getNewCoinStates(revealedPattern) is called next and it
- *  returns "T-H-".
- * 4th step:
- *  getSlotsToReveal() is called and it returns a pattern "??--".
- *  getNewCoinStates(revealedPatter) is called and it returns
+ *  *getNewCoinStates(revealedPattern) is called next and it
+ *  returns "T-H-".<br><br>
+ * <I>4th step:</I><br>
+ *  *getSlotsToReveal() is called and it returns a pattern "??--".<br>
+ *  *getNewCoinStates(revealedPatter) is called and it returns
  *  the flipped version of what revealedPattern is (example:
- *  "HT--" becomes "TH--").
- * 5th step:
- *  getSlotsToReveal() is called and it returns a pattern "?-?-".
- *  getNewCoinStates(revealedPattern) is called and it returns
+ *  "HT--" becomes "TH--").<br><br>
+ * <I>5th step:</I><br>
+ *  *getSlotsToReveal() is called and it returns a pattern "?-?-".<br>
+ *  *getNewCoinStates(revealedPattern) is called and it returns
  *  the flipped version of revealedPattern (example: "H-H-" becomes
- *  "T-T-". And it is a guaranteed win after this step.
+ *  "T-T-". And it is a guaranteed win after this step.<br>
  *
  * @author CS4250 Fall 2018
  * @version 1.2.2 (20181004)
@@ -46,7 +46,7 @@ public class Player implements StrategicPlayer {
     private int maxNumSpins;
 
     /**
-     * holds a coin number for the four coins two reaveal strategy.
+     * holds a coin number for the four coins two reveal strategy.
      */
     private final int strategicCoinValue = 4;
 
@@ -90,6 +90,11 @@ public class Player implements StrategicPlayer {
      */
     private final int three = 3;
 
+    /**
+     * Constructor for the Player class.
+     */
+     Player() {
+     }
     /**
      * Establishes that the player is beginning a new game.
      * @param coinsPerWheelParam the number of coins in the wheel
